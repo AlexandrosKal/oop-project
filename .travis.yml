@@ -1,8 +1,7 @@
 language: cpp
-compiler:
-  - gcc
+compiler: gcc
 script: cd src && make
-os:
-  - linux
 notifications:
   email: false
+os: linux
+sudo: false
