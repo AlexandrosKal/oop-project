@@ -1,6 +1,6 @@
 language: cpp
 compiler: gcc
-script: cd src && make
+script: make && make test
 notifications:
   email: false
 os: linux
