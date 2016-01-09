@@ -22,8 +22,8 @@ TEST_TARGET = $(BUILD_DIR)/project_test.out
 CPPFLAGS += -isystem $(GTEST_DIR)/include
 
 # Flags passed to the C++ compiler.
-#CXXFLAGS += -Weverything -pedantic -std=c++03
-CXXFLAGS += -Wall -Wextra -pedantic -std=c++03
+#CXXFLAGS += -std=c++03 -Weverything -pedantic -pthread
+CXXFLAGS += -std=c++03 -Wall -Wextra -pedantic -pthread
 
 # Build targets.
 
@@ -53,6 +53,6 @@ $(BUILD_DIR)/project_test.o : $(TEST_DIR)/project_test.cc $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
 $(BIN_TARGET) : $(SRC_OBJS)
-	$(CXX) $^ -o $@
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
 $(TEST_TARGET) : $(SRC_OBJS) $(TEST_OBJS) $(BUILD_DIR)/gtest_main.a
-	$(CXX) $^ -o $@
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
