@@ -48,10 +48,10 @@ the following **case insensitive** arguments:
 |`k`      |`size_t` Initial maximum car number that can pass a manned toll station|
 |`percent`|`int` Car percent on a segment that becomes `ready` in the next step   |
 
-If any of these arguments is not provided, a default value must be used.
+If any of these arguments is not provided, a default value **must** be used.
 
-During the execution, `nsegs` numbers are read from the standard input
-correspoding to the `capacity` of each `Segment`.
+During the execution, `nsegs` numbers (`size_t`) are read from the standard
+input correspoding to the `capacity` of each `Segment`.
 
 E.g:
 
