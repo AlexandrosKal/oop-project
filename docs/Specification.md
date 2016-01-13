@@ -2,11 +2,20 @@
 
 ## Classes
 
+The classes **must** contain *at least* the following members. The data types
+are not binding and equivalents may be used.
+
 ### Freeway
 
-|Attribute  |Description|
-|-----------|-----------|
-|`Operate()`|Test       |
+Variable  |Description
+:---------|:----------
+`cars`    |`vector<Car*>` Expandable
+`segments`|`vector<Segment*>` Constant
+
+Method     |Description
+:----------|:----------
+`Freeway(num_segments, toll_pass_limit, segment_ready_percent, segment_capacities)`|Prints `Αυτοκινητόδρομος σε λειτουργία` and constructs its data members
+`Operate()`                                                                        |Calls the `Operate()` method of each `Segment` from end to start and prints the `Car` number
 
 ### Segment
 
@@ -22,22 +31,27 @@
 
 ### Toll
 
-|Variable|Description   |
-|:-------|:-------------|
-|`cars`  |`vector<Car*>`|
+Variable|Description
+:-------|:----------
+`cars`  |`vector<Car*>`
 
-|Method            |Description |
-|:-----------------|:-----------|
-|`Add(car)`        |`void`      |
-|`Remove(num_cars)`|`void`      |
+Method            |Description
+:-----------------|:----------
+`Toll()`          |Creates a random number of `Cars`
+`Add(car)`        |`void`
+`Remove(num_cars)`|`void`
 
 ### Car
 
-|Variable       |Description                                                                   |
-|:--------------|:-----------------------------------------------------------------------------|
-|`exit_junction`|`Junction*`                                                                   |
-|`ready`        |`bool`                                                                        |
-|`segment`      |`Segment*` Points to the current `Segment` or `NULL` if not inside a `Segment`|
+Variable       |Description
+:--------------|:----------
+`exit_junction`|`size_t`
+`ready`        |`bool`
+`segment`      |`Segment*` Points to the current `Segment` or `NULL` if not inside a `Segment`
+
+Method                       |Description
+:----------------------------|:-----------------
+`Car(exit_junction, segment)`|`ready` is `false`
 
 -------------------------------------------------------------------------------
 
