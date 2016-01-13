@@ -19,15 +19,39 @@ Method     |Description
 
 ### Segment
 
-|Attribute  |Description|
-|-----------|-----------|
-|`Operate()`|Test       |
+Variable        |Description
+:---------------|:----------
+`cars`          |`vector<Car*>`
+`capacity`      |`size_t`
+`enter_junction`|`Junction*`
+`next`          |`Segment*`
+`previous`      |`Segment*`
+`ready_percent` |`int`
+
+Method                                              |Description
+:---------------------------------------------------|:----------
+`Segment(toll_pass_limit, ready_percent, capacity)` |Randomly creates `Cars` that run into the `Segment`
+`Enter()`                                           |`void` Max possible `Cars` enter from `Tolls` and previous `Segment`
+`Exit()`                                            |`void` Max possible `Cars` exit the `Freeway`
+`Operate()`                                         |`void` Calls `Exit()`, `Enter()` and randomly sets `ready_percent`% cars as `ready`
+`Pass()`                                            |`void` Max possible `Cars` exit the `Segment` and enter the next one
+`num_cars()`                                        |`size_t`
 
 ### Junction
 
-|Attribute  |Description|
-|-----------|-----------|
-|`Operate()`|Test       |
+Variable          |Description
+:-----------------|:----------
+`manned_tolls`    |`vector<Tolls*>`
+`electronic_tolls`|`vector<Tolls*>`
+`id`              |`size_t`
+`manned_tolls`    |`vector<Tolls*>`
+`pass_limit`      |`size_t` Number of `Cars` allowed to enter from `manned_tolls`. Double for `electronic_tolls`
+
+Method                      |Description
+:---------------------------|:----------
+`Junction(pass_limit)`      |Creates a random number of `Tolls
+`Operate(segment)`          |`void` `Cars` enter the `Segment` respecting the `capacity` and the `pass_limit`. If `3*pass_limit Cars` are not allowed to enter, then the max number of `Cars` allowed to pass is distributed equally among the tolls
+`id()`                      |`size_t`
 
 ### Toll
 
