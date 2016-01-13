@@ -28,9 +28,11 @@
 
 ### Car
 
-|Attribute  |Description|
-|-----------|-----------|
-|`Operate()`|Test       |
+|Variable       |Description                                                                   |
+|:--------------|:-----------------------------------------------------------------------------|
+|`ready`        |`bool`                                                                        |
+|`exit_junction`|`Junction*`                                                                   |
+|`segment`      |`Segment*` Points to the current `Segment` or `NULL` if not inside a `Segment`|
 
 -------------------------------------------------------------------------------
 
