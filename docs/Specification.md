@@ -22,9 +22,14 @@
 
 ### Toll
 
-|Attribute  |Description|
-|-----------|-----------|
-|`Operate()`|Test       |
+|Variable|Description   |
+|:-------|:-------------|
+|`cars`  |`vector<Car*>`|
+
+|Method            |Description |
+|:-----------------|:-----------|
+|`Add(car)`        |`void`      |
+|`Remove(num_cars)`|`void`      |
 
 ### Car
 
