@@ -35,8 +35,8 @@
 
 |Variable       |Description                                                                   |
 |:--------------|:-----------------------------------------------------------------------------|
-|`ready`        |`bool`                                                                        |
 |`exit_junction`|`Junction*`                                                                   |
+|`ready`        |`bool`                                                                        |
 |`segment`      |`Segment*` Points to the current `Segment` or `NULL` if not inside a `Segment`|
 
 -------------------------------------------------------------------------------
