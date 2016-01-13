@@ -22,7 +22,7 @@
 
 ### Toll
 
-||Attribute |Description|
+|Attribute  |Description|
 |-----------|-----------|
 |`Operate()`|Test       |
 
@@ -44,7 +44,7 @@ the following **case insensitive** arguments:
 |`n`      |`int` Simulation steps number                                          |
 |`nsegs`  |`size_t` Freeway segments number                                       |
 |`k`      |`size_t` Initial maximum car number that can pass a manned toll station|
-|`percent`|`int` Car percent on a segment that becomes `ready` at the next step   |
+|`percent`|`int` Car percent on a segment that becomes `ready` in the next step   |
 
 If any of these arguments is not provided, a default value must be used.
 
