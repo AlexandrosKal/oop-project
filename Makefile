@@ -34,7 +34,8 @@ all : $(BIN_TARGET)
 clean :
 	$(RM) build/*
 test : $(TEST_TARGET)
-	./styleguide/cpplint/cpplint.py --root=src src/* test/* && ./$(TEST_TARGET)
+	./styleguide/cpplint/cpplint.py --root=src include/* src/* test/* && \
+		./$(TEST_TARGET)
 
 # Builds Google Test and Google Mock.
 
