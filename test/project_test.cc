@@ -3,6 +3,7 @@
 namespace {
 
 TEST(ProjectTest, ShouldSucceed) {
+  EXPECT_EQ(1, 1);
 }
 
 }
