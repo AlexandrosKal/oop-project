@@ -32,8 +32,7 @@ all : $(BIN_TARGET)
 clean :
 	$(RM) $(BUILD_DIR)/*
 test : $(TEST_TARGET)
-	./styleguide/cpplint/cpplint.py --filter=-legal/copyright src/* test/* && \
-		./$(TEST_TARGET)
+	./styleguide/cpplint/cpplint.py --root=src src/* test/* && ./$(TEST_TARGET)
 
 # Builds gtest.a and gtest_main.a.
 
