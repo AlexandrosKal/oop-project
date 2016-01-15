@@ -10,7 +10,7 @@ GTEST_SRCS_ = $(GTEST_DIR)/src/*.cc $(GTEST_DIR)/src/*.h $(GTEST_HEADERS)
 BUILD_DIR = build
 
 SRC_DIR = src
-SRC_OBJS = $(BUILD_DIR)/project.o
+SRC_OBJS =
 
 TEST_DIR = test
 TEST_OBJS = $(BUILD_DIR)/project_test.o
@@ -52,7 +52,7 @@ $(BUILD_DIR)/project.o : $(SRC_DIR)/project.cc
 $(BUILD_DIR)/project_test.o : $(TEST_DIR)/project_test.cc $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
-$(BIN_TARGET) : $(SRC_OBJS)
+$(BIN_TARGET) : $(SRC_OBJS) $(BUILD_DIR)/project.o
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
 $(TEST_TARGET) : $(SRC_OBJS) $(TEST_OBJS) $(BUILD_DIR)/gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
