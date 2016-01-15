@@ -35,6 +35,3 @@
 
 # Debug files
 *.dSYM/
-
-# Coding style lint
-cpplint.py
