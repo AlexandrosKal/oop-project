@@ -13,8 +13,9 @@ GMOCK_SRCS_ = $(GMOCK_DIR)/src/*.cc $(GMOCK_HEADERS)
 
 # Project configuration.
 
-SRC_OBJS =
-TEST_OBJS = build/project_test.o
+SRC_OBJS = build/car.o
+TEST_OBJS = build/project_test.o \
+            build/car_test.o
 
 BIN_TARGET = build/project.out
 TEST_TARGET = build/project_test.out
@@ -59,6 +60,11 @@ build/gmock_main.a : build/gmock-all.o build/gtest-all.o build/gmock_main.o
 build/project.o : src/project.cc
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 build/project_test.o : test/project_test.cc $(GMOCK_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
+
+build/car.o : src/car.cc
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
+build/car_test.o : test/car_test.cc $(GMOCK_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
 $(BIN_TARGET) : $(SRC_OBJS) build/project.o
