@@ -1,5 +1,6 @@
 #ifndef CAR_H_
 #define CAR_H_
+
 #include "segment.h"
 #include <cstddef>
 

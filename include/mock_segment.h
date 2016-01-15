@@ -1,5 +1,6 @@
 #ifndef MOCK_SEGMENT_H_
 #define MOCK_SEGMENT_H_
+
 #include "segment.h"
 #include "gmock/gmock.h"
 

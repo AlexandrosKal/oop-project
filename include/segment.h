@@ -1,6 +1,5 @@
 #ifndef SEGMENT_H_
 #define SEGMENT_H_
-#include <vector>
 
 namespace oop_project {
 

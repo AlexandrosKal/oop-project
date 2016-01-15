@@ -1,6 +1,6 @@
 #include "car.h"
-#include "mock_segment.h"
 #include "gtest/gtest.h"
+#include "mock_segment.h"
 
 namespace oop_project {
 
@@ -39,6 +39,8 @@ TEST(CarTest, ChangesReadyValue) {
   Car car(5, NULL);
   car.set_ready(true);
   ASSERT_EQ(true, car.ready());
+  car.set_ready(false);
+  ASSERT_EQ(false, car.ready());
 }
 
 }  // namespace oop_project
