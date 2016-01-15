@@ -13,9 +13,11 @@ GMOCK_SRCS_ = $(GMOCK_DIR)/src/*.cc $(GMOCK_HEADERS)
 
 # Project configuration.
 
-SRC_OBJS = build/car.o
+SRC_OBJS = build/car.o \
+           build/toll.o
 TEST_OBJS = build/project_test.o \
-            build/car_test.o
+            build/car_test.o \
+            build/toll_test.o
 
 BIN_TARGET = build/project.out
 TEST_TARGET = build/project_test.out
@@ -35,8 +37,7 @@ all : $(BIN_TARGET)
 clean :
 	$(RM) build/*
 test : $(TEST_TARGET)
-	./styleguide/cpplint/cpplint.py --root=src include/* src/* test/* && \
-		./$(TEST_TARGET)
+	./styleguide/cpplint/cpplint.py include/* src/* test/* && ./$(TEST_TARGET)
 
 # Builds Google Test and Google Mock.
 
@@ -65,6 +66,11 @@ build/project_test.o : test/project_test.cc $(GMOCK_HEADERS)
 build/car.o : src/car.cc
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 build/car_test.o : test/car_test.cc $(GMOCK_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
+
+build/toll.o : src/toll.cc include/toll.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
+build/toll_test.o : test/toll_test.cc include/toll.h $(GMOCK_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
 $(BIN_TARGET) : $(SRC_OBJS) build/project.o
