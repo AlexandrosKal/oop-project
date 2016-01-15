@@ -13,19 +13,15 @@ GMOCK_SRCS_ = $(GMOCK_DIR)/src/*.cc $(GMOCK_HEADERS)
 
 # Project configuration.
 
-BUILD_DIR = build
+SRC_OBJS = build/toll.o
+TEST_OBJS = build/toll_test.o
 
-SRC_DIR = src
-SRC_OBJS =
-
-TEST_DIR = test
-TEST_OBJS = $(BUILD_DIR)/project_test.o
-
-BIN_TARGET = $(BUILD_DIR)/project.out
-TEST_TARGET = $(BUILD_DIR)/project_test.out
+BIN_TARGET = build/project.out
+TEST_TARGET = build/project_test.out
 
 # Flags passed to the preprocessor.
-CPPFLAGS += -isystem $(GTEST_DIR)/include -isystem $(GMOCK_DIR)/include
+CPPFLAGS += -isystem $(GTEST_DIR)/include -isystem $(GMOCK_DIR)/include \
+            -iquoteinclude/
 
 # Flags passed to the C++ compiler.
 #CXXFLAGS += -std=c++03 -Weverything -pedantic -pthread
@@ -36,37 +32,38 @@ CXXFLAGS += -std=c++03 -Wall -Wextra -pedantic -pthread
 .PHONY = all clean test
 all : $(BIN_TARGET)
 clean :
-	$(RM) $(BUILD_DIR)/*
+	$(RM) build/*
 test : $(TEST_TARGET)
 	./styleguide/cpplint/cpplint.py --root=src src/* test/* && ./$(TEST_TARGET)
 
 # Builds Google Test and Google Mock.
 
-$(BUILD_DIR)/gtest-all.o : $(GTEST_SRCS_)
+build/gtest-all.o : $(GTEST_SRCS_)
 	$(CXX) $(CPPFLAGS) -I$(GTEST_DIR) -I$(GMOCK_DIR) $(CXXFLAGS) -c \
 		$(GTEST_DIR)/src/gtest-all.cc -o $@
 
-$(BUILD_DIR)/gmock-all.o : $(GMOCK_SRCS_)
+build/gmock-all.o : $(GMOCK_SRCS_)
 	$(CXX) $(CPPFLAGS) -I$(GTEST_DIR) -I$(GMOCK_DIR) $(CXXFLAGS) -c \
 		$(GMOCK_DIR)/src/gmock-all.cc -o $@
 
-$(BUILD_DIR)/gmock_main.o : $(GMOCK_SRCS_)
+build/gmock_main.o : $(GMOCK_SRCS_)
 	$(CXX) $(CPPFLAGS) -I$(GTEST_DIR) -I$(GMOCK_DIR) $(CXXFLAGS) -c \
 		$(GMOCK_DIR)/src/gmock_main.cc -o $@
 
-$(BUILD_DIR)/gmock_main.a : $(BUILD_DIR)/gmock-all.o \
-                            $(BUILD_DIR)/gtest-all.o \
-                            $(BUILD_DIR)/gmock_main.o
+build/gmock_main.a : build/gmock-all.o build/gtest-all.o build/gmock_main.o
 	$(AR) $(ARFLAGS) $@ $^
 
 # Project builds.
 
-$(BUILD_DIR)/project.o : $(SRC_DIR)/project.cc
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
-$(BUILD_DIR)/project_test.o : $(TEST_DIR)/project_test.cc $(GMOCK_HEADERS)
+build/project.o : src/project.cc
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
-$(BIN_TARGET) : $(SRC_OBJS) $(BUILD_DIR)/project.o
+build/toll.o : src/toll.cc include/toll.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
+build/toll_test.o : test/toll_test.cc include/toll.h $(GMOCK_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
+
+$(BIN_TARGET) : $(SRC_OBJS) build/project.o
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
-$(TEST_TARGET) : $(SRC_OBJS) $(TEST_OBJS) $(BUILD_DIR)/gmock_main.a
+$(TEST_TARGET) : $(SRC_OBJS) $(TEST_OBJS) build/gmock_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
