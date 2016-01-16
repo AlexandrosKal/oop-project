@@ -12,12 +12,6 @@ TEST(CarTest, InitializesDataMembers) {
   ASSERT_EQ(false, car.ready());
 }
 
-TEST(CarTest, ReturnsSegment) {
-  Segment* segment = new MockSegment;
-  Car car(5, segment);
-  ASSERT_EQ(segment, car.segment());
-}
-
 TEST(CarTest, ReturnsExitJunction) {
   Car car(5, NULL);
   ASSERT_EQ(5, car.exit_junction());
@@ -28,10 +22,9 @@ TEST(CarTest, ReturnsReady) {
   ASSERT_EQ(false, car.ready());
 }
 
-TEST(CarTest, ChangesSegmentValue) {
+TEST(CarTest, ReturnsSegment) {
   Segment* segment = new MockSegment;
-  Car car(5, NULL);
-  car.set_segment(segment);
+  Car car(5, segment);
   ASSERT_EQ(segment, car.segment());
 }
 
@@ -41,6 +34,13 @@ TEST(CarTest, ChangesReadyValue) {
   ASSERT_EQ(true, car.ready());
   car.set_ready(false);
   ASSERT_EQ(false, car.ready());
+}
+
+TEST(CarTest, ChangesSegmentValue) {
+  Segment* segment = new MockSegment;
+  Car car(5, NULL);
+  car.set_segment(segment);
+  ASSERT_EQ(segment, car.segment());
 }
 
 }  // namespace oop_project

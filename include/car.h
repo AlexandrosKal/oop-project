@@ -10,13 +10,13 @@ class Car {
  public:
   Car(size_t, Segment*);
 
-  void set_segment(Segment* /*segment*/);
-  const Segment* segment() const;
-
   size_t exit_junction() const;
 
   void set_ready(bool /*ready*/);
   bool ready() const;
+
+  void set_segment(Segment* /*segment*/);
+  const Segment* segment() const;
 
  private:
   size_t exit_junction_;
