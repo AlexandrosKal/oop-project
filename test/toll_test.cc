@@ -1,6 +1,5 @@
 #include "toll.h"
 #include "gtest/gtest.h"
-#include "gmock/gmock.h"
 
 namespace oop_project {
 
@@ -29,7 +28,8 @@ TEST(TollTest, RemovesSomeCars) {
 
 TEST(TollTest, HandlesOverflowRemoval) {
   Toll toll(5, 10);
-  int num_cars = toll.kMaxCars;
+  int num_cars = toll.num_cars();
+
   std::vector<Car*> cars = toll.Remove(num_cars + 10);
   ASSERT_LE(cars.size(), num_cars);
 }
