@@ -63,14 +63,16 @@ build/project.o : src/project.cc
 build/project_test.o : test/project_test.cc $(GMOCK_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
-build/car.o : src/car.cc
+build/car.o : src/car.cc include/car.h include/segment.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
-build/car_test.o : test/car_test.cc $(GMOCK_HEADERS)
+build/car_test.o : test/car_test.cc include/car.h include/mock_segment.h \
+                   include/segment.h $(GMOCK_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
-build/toll.o : src/toll.cc include/toll.h
+build/toll.o : src/toll.cc include/toll.h include/car.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
-build/toll_test.o : test/toll_test.cc include/toll.h $(GMOCK_HEADERS)
+build/toll_test.o : test/toll_test.cc include/toll.h include/car.h \
+                    $(GMOCK_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
 $(BIN_TARGET) : $(SRC_OBJS) build/project.o
