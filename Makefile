@@ -15,8 +15,7 @@ GMOCK_SRCS_ = $(GMOCK_DIR)/src/*.cc $(GMOCK_HEADERS)
 
 SRC_OBJS = build/car.o \
            build/toll.o
-TEST_OBJS = build/project_test.o \
-            build/car_test.o \
+TEST_OBJS = build/car_test.o \
             build/toll_test.o
 
 BIN_TARGET = build/project.out
@@ -60,8 +59,6 @@ build/gmock_main.a : build/gmock-all.o build/gtest-all.o build/gmock_main.o
 
 build/project.o : src/project.cc
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
-build/project_test.o : test/project_test.cc $(GMOCK_HEADERS)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
 build/car.o : src/car.cc include/car.h include/segment.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
@@ -72,7 +69,7 @@ build/car_test.o : test/car_test.cc include/car.h include/mock_segment.h \
 build/toll.o : src/toll.cc include/toll.h include/car.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 build/toll_test.o : test/toll_test.cc include/toll.h include/car.h \
-                    $(GMOCK_HEADERS)
+                    $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
 $(BIN_TARGET) : $(SRC_OBJS) build/project.o
