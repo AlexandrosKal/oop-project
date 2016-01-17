@@ -52,7 +52,7 @@ std::vector<Car*> Junction::Operate(size_t max_allowed_cars) {
   }
 
   for (size_t i = 0; i < manned_tolls_.size(); ++i) {
-  size_t m_toll_num_cars = rand() % kRandomCarsPerToll;
+    size_t m_toll_num_cars = rand() % kRandomCarsPerToll;
     for (size_t j = 0; j < m_toll_num_cars; ++j) {
       Car* car = new Car((rand() % num_junctions_ - id_) + id_, NULL);
       manned_tolls_[i]->Add(car);
@@ -60,7 +60,7 @@ std::vector<Car*> Junction::Operate(size_t max_allowed_cars) {
   }
 
   for (size_t i = 0; i < electronic_tolls_.size(); ++i) {
-  size_t e_toll_num_cars = rand() % kRandomCarsPerToll;
+    size_t e_toll_num_cars = rand() % kRandomCarsPerToll;
     for (size_t j = 0; j < e_toll_num_cars; ++j) {
       Car* car = new Car((rand() % num_junctions_ - id_) + id_, NULL);
       electronic_tolls_[i]->Add(car);
