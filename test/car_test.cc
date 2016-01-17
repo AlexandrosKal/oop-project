@@ -1,15 +1,14 @@
 #include "car.h"
 #include "gtest/gtest.h"
-#include "mock_segment.h"
 
 namespace oop_project {
 
 TEST(CarTest, InitializesDataMembers) {
-  Segment* segment = new MockSegment;
-  Car car(5, segment);
+  Segment segment;
+  Car car(5, &segment);
   ASSERT_EQ(5, car.exit_junction());
-  ASSERT_EQ(segment, car.segment());
   ASSERT_EQ(false, car.ready());
+  ASSERT_EQ(&segment, car.segment());
 }
 
 TEST(CarTest, ReturnsExitJunction) {
@@ -23,9 +22,9 @@ TEST(CarTest, ReturnsReady) {
 }
 
 TEST(CarTest, ReturnsSegment) {
-  Segment* segment = new MockSegment;
-  Car car(5, segment);
-  ASSERT_EQ(segment, car.segment());
+  Segment segment;
+  Car car(5, &segment);
+  ASSERT_EQ(&segment, car.segment());
 }
 
 TEST(CarTest, ChangesReadyValue) {
@@ -37,10 +36,10 @@ TEST(CarTest, ChangesReadyValue) {
 }
 
 TEST(CarTest, ChangesSegmentValue) {
-  Segment* segment = new MockSegment;
+  Segment segment;
   Car car(5, NULL);
-  car.set_segment(segment);
-  ASSERT_EQ(segment, car.segment());
+  car.set_segment(&segment);
+  ASSERT_EQ(&segment, car.segment());
 }
 
 }  // namespace oop_project

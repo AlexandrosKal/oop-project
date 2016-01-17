@@ -62,8 +62,8 @@ build/project.o : src/project.cc
 
 build/car.o : src/car.cc include/car.h include/segment.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
-build/car_test.o : test/car_test.cc include/car.h include/mock_segment.h \
-                   include/segment.h $(GMOCK_HEADERS)
+build/car_test.o : test/car_test.cc include/car.h include/segment.h \
+                   $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
 build/toll.o : src/toll.cc include/toll.h include/car.h
