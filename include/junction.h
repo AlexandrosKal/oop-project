@@ -1,9 +1,9 @@
 #ifndef JUNCTION_H_
 #define JUNCTION_H_
 
-#include "toll.h"
 #include <cstddef>
 #include <vector>
+#include "toll.h"
 
 namespace oop_project {
 
@@ -14,17 +14,17 @@ class Junction {
 
   Junction(size_t, size_t);
 
-  size_t id() const;
-  size_t pass_limit() const;
-  size_t num_junctions() const;
-
   std::vector<Car*> Operate(size_t);
+
+  size_t id() const;
+  size_t num_junctions() const;
+  size_t pass_limit() const;
 
  private:
   static size_t current_id_;
-  std::vector<Toll*> manned_tolls_;
   std::vector<Toll*> electronic_tolls_;
   size_t id_;
+  std::vector<Toll*> manned_tolls_;
   size_t num_junctions_;
   size_t pass_limit_;
 };

@@ -10,8 +10,7 @@ GTEST_SRCS_ = $(GTEST_DIR)/src/*.cc $(GTEST_DIR)/src/*.h $(GTEST_HEADERS)
 SRC_OBJS = build/car.o \
            build/junction.o \
            build/toll.o
-TEST_OBJS = build/project_test.o \
-            build/car_test.o \
+TEST_OBJS = build/car_test.o \
             build/junction_test.o \
             build/toll_test.o
 
@@ -62,7 +61,7 @@ build/junction.o : src/junction.cc include/junction.h include/car.h \
                    include/toll.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 build/junction_test.o : test/junction_test.cc include/junction.h \
-                        include/car.h include/toll.h $(GMOCK_HEADERS)
+                        include/car.h include/toll.h $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
 build/toll.o : src/toll.cc include/toll.h
