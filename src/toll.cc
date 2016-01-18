@@ -15,6 +15,12 @@ Toll::Toll(size_t current_junction, size_t num_junctions) {
   }
 }
 
+Toll::~Toll() {
+  for (size_t i = 0; i < cars_.size(); ++i) {
+    delete cars_[i];
+  }
+}
+
 void Toll::Add(Car* car) {
   cars_.push_back(car);
 }

@@ -11,6 +11,7 @@ class Toll {
   static const size_t kMaxCars;
 
   Toll(size_t, size_t);
+  ~Toll();
 
   void Add(Car* /*car*/);
   std::vector<Car*> Remove();

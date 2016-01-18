@@ -7,8 +7,8 @@ TEST(TollTest, AddsCar) {
   Toll toll(5, 10);
   size_t prev_num_cars = toll.num_cars();
 
-  Car car(10, NULL);
-  toll.Add(&car);
+  Car* car = new Car(10, NULL);
+  toll.Add(car);
   ASSERT_EQ(toll.num_cars(), prev_num_cars + 1);
 }
 
