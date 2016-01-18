@@ -1,7 +1,6 @@
 #ifndef JUNCTION_H_
 #define JUNCTION_H_
 
-#include <cstddef>
 #include <vector>
 #include "toll.h"
 
@@ -13,11 +12,11 @@ class Junction {
   static const size_t kRandomCarsPerToll;
 
   Junction(size_t, size_t);
+  ~Junction();
 
   std::vector<Car*> Operate(size_t);
 
   size_t id() const;
-  size_t num_junctions() const;
   size_t pass_limit() const;
 
  private:

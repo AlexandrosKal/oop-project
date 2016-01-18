@@ -1,7 +1,6 @@
 #include "junction.h"
 #include <algorithm>
 #include <cstdlib>
-#include <ctime>
 
 namespace oop_project {
 
@@ -23,9 +22,17 @@ Junction::Junction(size_t num_junctions, size_t pass_limit)
   }
 }
 
+Junction::~Junction() {
+  for (size_t i = 0; i < manned_tolls_.size(); ++i) {
+    delete manned_tolls_[i];
+  }
+  for (size_t i = 0; i < electronic_tolls_.size(); ++i) {
+    delete electronic_tolls_[i];
+  }
+}
+
 std::vector<Car*> Junction::Operate(size_t max_allowed_cars) {
   size_t sum_cars = 0;
-
   for (size_t i = 0; i < manned_tolls_.size(); ++i) {
     sum_cars += manned_tolls_[i]->num_cars();
   }
@@ -42,8 +49,8 @@ std::vector<Car*> Junction::Operate(size_t max_allowed_cars) {
     }
   } else {
     size_t limit = std::min(3 * pass_limit_, max_allowed_cars);
-    size_t cars_pass = (limit / (manned_tolls_.size() +
-                        electronic_tolls_.size()));
+    size_t cars_pass = limit / (manned_tolls_.size() +
+                                electronic_tolls_.size());
     std::vector<Car*> temp;
     for (size_t i = 0; i < manned_tolls_.size(); ++i) {
       temp = manned_tolls_[i]->Remove(cars_pass);
@@ -54,7 +61,7 @@ std::vector<Car*> Junction::Operate(size_t max_allowed_cars) {
   for (size_t i = 0; i < manned_tolls_.size(); ++i) {
     size_t m_toll_num_cars = rand() % kRandomCarsPerToll;
     for (size_t j = 0; j < m_toll_num_cars; ++j) {
-      Car* car = new Car((rand() % num_junctions_ - id_) + id_, NULL);
+      Car* car = new Car(rand() % (num_junctions_ - id_) + id_, NULL);
       manned_tolls_[i]->Add(car);
     }
   }
@@ -62,7 +69,7 @@ std::vector<Car*> Junction::Operate(size_t max_allowed_cars) {
   for (size_t i = 0; i < electronic_tolls_.size(); ++i) {
     size_t e_toll_num_cars = rand() % kRandomCarsPerToll;
     for (size_t j = 0; j < e_toll_num_cars; ++j) {
-      Car* car = new Car((rand() % num_junctions_ - id_) + id_, NULL);
+      Car* car = new Car(rand() % (num_junctions_ - id_) + id_, NULL);
       electronic_tolls_[i]->Add(car);
     }
   }
