@@ -4,7 +4,7 @@
 namespace oop_project {
 
 TEST(CarTest, InitializesDataMembers) {
-  Segment segment;
+  Segment segment(5, NULL, 5, 5, 5);
   Car car(5, &segment);
   ASSERT_EQ(5, car.exit_junction());
   ASSERT_EQ(false, car.ready());
@@ -22,7 +22,7 @@ TEST(CarTest, ReturnsReady) {
 }
 
 TEST(CarTest, ReturnsSegment) {
-  Segment segment;
+  Segment segment(5, NULL, 5, 5, 5);
   Car car(5, &segment);
   ASSERT_EQ(&segment, car.segment());
 }
@@ -36,7 +36,7 @@ TEST(CarTest, ChangesReadyValue) {
 }
 
 TEST(CarTest, ChangesSegmentValue) {
-  Segment segment;
+  Segment segment(5, NULL, 5, 5, 5);
   Car car(5, NULL);
   car.set_segment(&segment);
   ASSERT_EQ(&segment, car.segment());
