@@ -32,7 +32,7 @@ std::vector<Car*> Toll::Remove() {
 std::vector<Car*> Toll::Remove(size_t num_cars) {
   std::vector<Car*> ret;
   if (cars_.size() > num_cars) {
-    ret.insert(ret.begin(), cars_.begin(), cars_.begin() + num_cars);
+    ret.insert(ret.end(), cars_.begin(), cars_.begin() + num_cars);
     cars_.erase(cars_.begin(), cars_.begin() + num_cars);
   } else {
     ret = cars_;
