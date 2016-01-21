@@ -24,9 +24,10 @@ TEST(JunctionTest, IncreasesIdByOne) {
 
 TEST(JunctionTest, HandlesPositiveCarsOperation) {
   Junction junction(10, 5);
+  size_t limit = junction.pass_limit();
   std::vector<Car*> cars = junction.Operate(20);
   ASSERT_LE(cars.size(), 20);
-  ASSERT_LE(cars.size(), 3 * junction.pass_limit());
+  ASSERT_LE(cars.size(), 3 * limit);
   cars = junction.Operate(4);
   ASSERT_LE(cars.size(), 4);
 }

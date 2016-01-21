@@ -9,7 +9,7 @@ namespace oop_project {
 class Junction {
  public:
   static const size_t kMaxTollsPerType;
-  static const size_t kRandomCarsPerToll;
+  static const size_t kMaxCarsPerToll;
 
   Junction(size_t, size_t);
   ~Junction();
