@@ -1,5 +1,6 @@
 #include "car.h"
 #include "gtest/gtest.h"
+#include "segment.h"
 
 namespace oop_project {
 

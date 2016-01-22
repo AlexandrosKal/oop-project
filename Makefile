@@ -9,9 +9,11 @@ GTEST_SRCS_ = $(GTEST_DIR)/src/*.cc $(GTEST_DIR)/src/*.h $(GTEST_HEADERS)
 
 SRC_OBJS = build/car.o \
            build/junction.o \
+           build/segment.o \
            build/toll.o
 TEST_OBJS = build/car_test.o \
             build/junction_test.o \
+            build/segment_test.o \
             build/toll_test.o
 
 BIN_TARGET = build/project.out
@@ -62,6 +64,13 @@ build/junction.o : src/junction.cc include/junction.h include/car.h \
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 build/junction_test.o : test/junction_test.cc include/junction.h \
                         include/car.h include/toll.h $(GTEST_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
+
+build/segment.o : src/segment.cc include/segment.h include/car.h \
+                  include/junction.h include/toll.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
+build/segment_test.o : test/segment_test.cc include/segment.h include/car.h \
+                       include/junction.h include/toll.h $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
 build/toll.o : src/toll.cc include/toll.h include/car.h

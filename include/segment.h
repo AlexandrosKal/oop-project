@@ -1,6 +1,8 @@
 #ifndef SEGMENT_H_
 #define SEGMENT_H_
 
+#include "junction.h"
+
 namespace oop_project {
 
 class Segment {

@@ -30,8 +30,8 @@ Segment::~Segment() {
 
 void Segment::Enter() {
   size_t max_allowed_cars;
-  vector<Car*> passed_cars;
-  if (prev != NULL) {
+  std::vector<Car*> passed_cars;
+  if (prev_ != NULL) {
     max_allowed_cars = capacity_ - cars_.size();
     passed_cars = prev_->Pass(max_allowed_cars);
     cars_.insert(cars_.end(), passed_cars.begin(), passed_cars.end());

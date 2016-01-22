@@ -1,10 +1,11 @@
 #ifndef CAR_H_
 #define CAR_H_
 
-#include "segment.h"
 #include <cstddef>
 
 namespace oop_project {
+
+class Segment;
 
 class Car {
  public:
