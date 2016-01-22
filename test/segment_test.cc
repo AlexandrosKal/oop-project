@@ -14,12 +14,8 @@ TEST(SegmentTest, CreatesRandomCars) {
 TEST(SegmentTest, EntersLessThanCapacity) {
   Segment prev_segment(10, NULL, 50, 5, 5);
   Segment segment(10, &prev_segment, 50, 5, 5);
-
-  size_t prev_ready = prev_segment.ready_cars().size();
-  size_t num_before_enter = segment.num_cars();
   segment.Enter();
   ASSERT_LE(segment.num_cars(), 10);
-  ASSERT_LE(segment.num_cars(), num_before_enter + prev_ready);
 }
 
 TEST(SegmentTest, RemovesCarsFromFreeway) {
