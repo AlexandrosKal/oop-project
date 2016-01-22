@@ -4,15 +4,11 @@
 namespace oop_project {
 
 TEST(SegmentTest, CreatesRandomCars) {
-  Segment* segment = new Segment(10, NULL, 50, 5, 5);
-  ASSERT_LE(segment->num_cars(), 10);
-
-  ASSERT_LE(segment->ready_cars().size(), 50 * segment->num_cars() / 100);
-  delete segment;
-
-  segment = new Segment(2, NULL, 50, 5, 5);
-  ASSERT_LE(segment->num_cars(), 2);
-  delete segment;
+  Segment segment(10, NULL, 50, 5, 5);
+  ASSERT_GE(segment.num_cars(), 1);
+  ASSERT_LE(segment.num_cars(), Segment::kMaxCars);
+  ASSERT_LE(segment.num_cars(), 10);
+  ASSERT_LE(segment.ready_cars().size(), 50 * segment.num_cars() / 100);
 }
 
 TEST(SegmentTest, EntersLessThanCapacity) {
