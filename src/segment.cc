@@ -1,5 +1,6 @@
 #include "segment.h"
 #include <cstdlib>
+#include <algorithm>
 
 namespace oop_project {
 
