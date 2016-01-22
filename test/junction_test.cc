@@ -3,14 +3,29 @@
 
 namespace oop_project {
 
-TEST(JunctionTest, InitializesDataMembers) {
+TEST(JunctionTest, HandlesZeroCarsOperation) {
   Junction junction(10, 5);
-  ASSERT_EQ(5, junction.pass_limit());
+  std::vector<Car*> cars = junction.Operate(0);
+  ASSERT_EQ(cars.size(), 0);
+  for (size_t i = 0; i < cars.size(); ++i) {
+    delete cars[i];
+  }
 }
 
-TEST(JunctionTest, ReturnsPassLimit) {
+TEST(JunctionTest, HandlesPositiveCarsOperation) {
   Junction junction(10, 5);
-  ASSERT_EQ(5, junction.pass_limit());
+  std::vector<Car*> cars = junction.Operate(20);
+  ASSERT_LE(cars.size(), 3 * 5);
+  ASSERT_LE(cars.size(), 20);
+  for (size_t i = 0; i < cars.size(); ++i) {
+    delete cars[i];
+  }
+
+  cars = junction.Operate(4);
+  ASSERT_LE(cars.size(), 4);
+  for (size_t i = 0; i < cars.size(); ++i) {
+    delete cars[i];
+  }
 }
 
 TEST(JunctionTest, IncreasesIdByOne) {
@@ -22,20 +37,9 @@ TEST(JunctionTest, IncreasesIdByOne) {
   ASSERT_EQ(junction2.id(), junction0.id() + 2);
 }
 
-TEST(JunctionTest, HandlesPositiveCarsOperation) {
+TEST(JunctionTest, ReturnsPassLimit) {
   Junction junction(10, 5);
-  size_t limit = junction.pass_limit();
-  std::vector<Car*> cars = junction.Operate(20);
-  ASSERT_LE(cars.size(), 20);
-  ASSERT_LE(cars.size(), 3 * limit);
-  cars = junction.Operate(4);
-  ASSERT_LE(cars.size(), 4);
-}
-
-TEST(JunctionTest, HandlesZeroCarsOperation) {
-  Junction junction(10, 5);
-  std::vector<Car*> cars = junction.Operate(0);
-  ASSERT_EQ(0, cars.size());
+  ASSERT_EQ(junction.pass_limit(), 5);
 }
 
 }  // namespace oop_project

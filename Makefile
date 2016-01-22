@@ -64,7 +64,7 @@ build/junction_test.o : test/junction_test.cc include/junction.h \
                         include/car.h include/toll.h $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
-build/toll.o : src/toll.cc include/toll.h
+build/toll.o : src/toll.cc include/toll.h include/car.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 build/toll_test.o : test/toll_test.cc include/toll.h include/car.h \
                     $(GTEST_HEADERS)

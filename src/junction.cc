@@ -1,5 +1,4 @@
 #include "junction.h"
-#include <algorithm>
 #include <cstdlib>
 
 namespace oop_project {
@@ -32,76 +31,30 @@ Junction::~Junction() {
 }
 
 std::vector<Car*> Junction::Operate(size_t max_allowed_cars) {
-  size_t manned_cars = 0, electronic_cars = 0;
-  for (size_t i = 0; i < manned_tolls_.size(); ++i) {
-    manned_cars += manned_tolls_[i]->num_cars();
-  }
-  for (size_t i = 0; i < electronic_tolls_.size(); ++i) {
-    electronic_cars += electronic_tolls_[i]->num_cars();
-  }
-  size_t sum_cars = manned_cars + electronic_cars;
+  size_t manned_cars = std::min(pass_limit_, CountCars(manned_tolls_));
+  size_t electronic_cars = std::min(2 * pass_limit_,
+                                    CountCars(electronic_tolls_));
 
-  std::vector<Car*> ret;
-  if (manned_cars <= pass_limit_ && electronic_cars <= 2 * pass_limit_ &&
-      sum_cars <= max_allowed_cars) {
-    std::vector<Car*> temp;
-    for (size_t i = 0; i < manned_tolls_.size(); ++i) {
-      temp = manned_tolls_[i]->Remove();
-      ret.insert(ret.end(), temp.begin(), temp.end());
+  std::vector<Car*> manned_ret, electronic_ret;
+  if (manned_cars + electronic_cars <= max_allowed_cars) {
+    manned_ret = RemoveCars(manned_tolls_, manned_cars);
+    electronic_ret = RemoveCars(electronic_tolls_, electronic_cars);
+
+    if (manned_cars == pass_limit_ && electronic_cars == 2 * pass_limit_) {
+      ++pass_limit_;
     }
-    for (size_t i = 0; i < electronic_tolls_.size(); ++i) {
-      temp = electronic_tolls_[i]->Remove();
-      ret.insert(ret.end(), temp.begin(), temp.end());
-    }
-    if (sum_cars == 3 * pass_limit_) {
-      pass_limit_++;
-    }
-  } else if (sum_cars > max_allowed_cars)  {
-    size_t manned_cars_pass = (max_allowed_cars / 3) / manned_tolls_.size();
-    size_t electronic_cars_pass = (2 * max_allowed_cars / 3) /
-                                   electronic_tolls_.size();
-    std::vector<Car*> temp;
-    for (size_t i = 0; i < manned_tolls_.size(); ++i) {
-      temp = manned_tolls_[i]->Remove(manned_cars_pass);
-      ret.insert(ret.end(), temp.begin(), temp.end());
-    }
-    for (size_t i = 0; i < electronic_tolls_.size(); ++i) {
-      temp = electronic_tolls_[i]->Remove(electronic_cars_pass);
-      ret.insert(ret.end(), temp.begin(), temp.end());
-    }
-    pass_limit_--;
   } else {
-    size_t manned_cars_pass = (pass_limit_) / manned_tolls_.size();
-    size_t electronic_cars_pass = (2 * pass_limit_) /
-                                   electronic_tolls_.size();
-    std::vector<Car*> temp;
-    for (size_t i = 0; i < manned_tolls_.size(); ++i) {
-      temp = manned_tolls_[i]->Remove(manned_cars_pass);
-      ret.insert(ret.end(), temp.begin(), temp.end());
-    }
-    for (size_t i = 0; i < electronic_tolls_.size(); ++i) {
-      temp = electronic_tolls_[i]->Remove(electronic_cars_pass);
-      ret.insert(ret.end(), temp.begin(), temp.end());
-    }
+    size_t allowed_cars = std::min(manned_cars, max_allowed_cars);
+    manned_ret = RemoveCars(manned_tolls_, allowed_cars);
+    electronic_ret = RemoveCars(electronic_tolls_,
+                                max_allowed_cars - manned_ret.size());
+    --pass_limit_;
   }
+  std::vector<Car*> ret = manned_ret;
+  ret.insert(ret.end(), electronic_ret.begin(), electronic_ret.end());
 
-  // Add random cars to both the electronic and the manned tolls
-
-  for (size_t i = 0; i < manned_tolls_.size(); ++i) {
-    size_t m_toll_num_cars = rand() % kMaxCarsPerToll;
-    for (size_t j = 0; j < m_toll_num_cars; ++j) {
-      Car* car = new Car(rand() % (num_junctions_ - id_) + id_, NULL);
-      manned_tolls_[i]->Add(car);
-    }
-  }
-
-  for (size_t i = 0; i < electronic_tolls_.size(); ++i) {
-    size_t e_toll_num_cars = rand() % kMaxCarsPerToll;
-    for (size_t j = 0; j < e_toll_num_cars; ++j) {
-      Car* car = new Car(rand() % (num_junctions_ - id_) + id_, NULL);
-      electronic_tolls_[i]->Add(car);
-    }
-  }
+  AddRandomCars(manned_tolls_);
+  AddRandomCars(electronic_tolls_);
   return ret;
 }
 
@@ -111,6 +64,41 @@ size_t Junction::id() const {
 
 size_t Junction::pass_limit() const {
   return pass_limit_;
+}
+
+void Junction::AddRandomCars(std::vector<Toll*>& tolls) const {
+  for (size_t i = 0; i < tolls.size(); ++i) {
+    size_t toll_num_cars = rand() % kMaxCarsPerToll;
+    for (size_t j = 0; j < toll_num_cars; ++j) {
+      size_t exit_junction = rand() % (num_junctions_ - id_) + id_;
+      tolls[i]->Add(new Car(exit_junction, NULL));
+    }
+  }
+}
+
+size_t Junction::CountCars(std::vector<Toll*>& tolls) const {
+  size_t ret = 0;
+  for (size_t i = 0; i < tolls.size(); ++i) {
+    ret += tolls[i]->num_cars();
+  }
+  return ret;
+}
+
+std::vector<Car*> Junction::RemoveCars(std::vector<Toll*>& tolls,
+                                       size_t num_cars) const {
+  std::vector<Car*> ret, temp;
+  size_t sum = 0;
+  for (size_t i = 0; i < tolls.size(); ++i) {
+    if (sum + tolls[i]->num_cars() > num_cars) {
+      temp = tolls[i]->Remove(num_cars - sum);
+      ret.insert(ret.end(), temp.begin(), temp.end());
+      break;
+    }
+    temp = tolls[i]->Remove();
+    ret.insert(ret.end(), temp.begin(), temp.end());
+    sum += temp.size();
+  }
+  return ret;
 }
 
 size_t Junction::current_id_ = 0;

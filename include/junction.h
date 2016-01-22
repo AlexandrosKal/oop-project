@@ -20,6 +20,10 @@ class Junction {
   size_t pass_limit() const;
 
  private:
+  void AddRandomCars(std::vector<Toll*>&) const;
+  size_t CountCars(std::vector<Toll*>&) const;
+  std::vector<Car*> RemoveCars(std::vector<Toll*>&, size_t) const;
+
   static size_t current_id_;
   std::vector<Toll*> electronic_tolls_;
   size_t id_;
