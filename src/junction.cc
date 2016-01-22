@@ -30,6 +30,10 @@ Junction::~Junction() {
   }
 }
 
+size_t Junction::NumCars() const {
+  return CountCars(manned_tolls_) + CountCars(electronic_tolls_);
+}
+
 std::vector<Car*> Junction::Operate(size_t max_allowed_cars) {
   size_t manned_cars = std::min(pass_limit_, CountCars(manned_tolls_));
   size_t electronic_cars = std::min(2 * pass_limit_,
