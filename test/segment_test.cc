@@ -64,7 +64,8 @@ TEST(SegmentTest, PassesReadyCars) {
 
   size_t num_before_pass = segment.num_cars();
   segment.Pass(5);
-  ASSERT_GE(segment.num_cars(), num_before_pass - 5);
+  ASSERT_GE(static_cast<int>(segment.num_cars()),
+            static_cast<int>(num_before_pass) - 5);
   ASSERT_GE(segment.num_cars(), num_before_pass - ready_to_pass);
   ASSERT_LE(next_segment.num_cars(), 10);
 }
