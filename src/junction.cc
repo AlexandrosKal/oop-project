@@ -70,7 +70,7 @@ size_t Junction::pass_limit() const {
   return pass_limit_;
 }
 
-void Junction::AddRandomCars(std::vector<Toll*>& tolls) const {
+void Junction::AddRandomCars(const std::vector<Toll*>& tolls) const {
   for (size_t i = 0; i < tolls.size(); ++i) {
     size_t toll_num_cars = rand() % kMaxCarsPerToll;
     for (size_t j = 0; j < toll_num_cars; ++j) {
@@ -80,7 +80,7 @@ void Junction::AddRandomCars(std::vector<Toll*>& tolls) const {
   }
 }
 
-size_t Junction::CountCars(std::vector<Toll*>& tolls) const {
+size_t Junction::CountCars(const std::vector<Toll*>& tolls) const {
   size_t ret = 0;
   for (size_t i = 0; i < tolls.size(); ++i) {
     ret += tolls[i]->num_cars();
@@ -88,7 +88,7 @@ size_t Junction::CountCars(std::vector<Toll*>& tolls) const {
   return ret;
 }
 
-std::vector<Car*> Junction::RemoveCars(std::vector<Toll*>& tolls,
+std::vector<Car*> Junction::RemoveCars(const std::vector<Toll*>& tolls,
                                        size_t num_cars) const {
   std::vector<Car*> ret, temp;
   size_t sum = 0;
