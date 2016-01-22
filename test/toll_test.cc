@@ -3,6 +3,12 @@
 
 namespace oop_project {
 
+TEST(TollTest, CreatesCar) {
+  Toll toll(5, 10);
+  ASSERT_GE(toll.num_cars(), 1);
+  ASSERT_LE(toll.num_cars(), Toll::kMaxCars);
+}
+
 TEST(TollTest, AddsCar) {
   Toll toll(5, 10);
   size_t prev_num_cars = toll.num_cars();
