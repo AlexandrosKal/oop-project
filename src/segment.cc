@@ -30,16 +30,14 @@ Segment::~Segment() {
 
 void Segment::Enter() {
   size_t max_allowed_cars;
-  std::vector<Car*> passed_cars;
   if (prev_ != NULL) {
     max_allowed_cars = capacity_ - cars_.size();
-    passed_cars = prev_->Pass(max_allowed_cars);
-    cars_.insert(cars_.end(), passed_cars.begin(), passed_cars.end());
+    prev_->Pass(max_allowed_cars);
   }
 
   max_allowed_cars = capacity_ - cars_.size();
-  passed_cars = enter_junction_->Operate(max_allowed_cars);
-  cars_.insert(cars_.end(), passed_cars.begin(), passed_cars.end());
+  std::vector<Car*> cars = enter_junction_->Operate(max_allowed_cars);
+  cars_.insert(cars_.end(), cars.begin(), cars.end());
 }
 
 void Segment::Exit() {
@@ -70,19 +68,20 @@ void Segment::Operate() {
   }
 }
 
-std::vector<Car*> Segment::Pass(size_t max_allowed_cars) {
-  std::vector<Car*> ret;
+void Segment::Pass(size_t max_allowed_cars) {
+  size_t passed_cars = 0;
   for (size_t i = 0; i < cars_.size(); ++i) {
-    if (ret.size() == max_allowed_cars) {
+    if (passed_cars == max_allowed_cars) {
       break;
     }
     if (cars_[i]->ready() &&
         cars_[i]->exit_junction() != enter_junction_->id() + 1) {
-      ret.push_back(cars_[i]);
+      cars_[i]->set_ready(false);
+      next_->cars_.push_back(cars_[i]);
       cars_.erase(cars_.begin() + i);
+      ++passed_cars;
     }
   }
-  return ret;
 }
 
 size_t Segment::num_cars() const {
