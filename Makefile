@@ -8,10 +8,12 @@ GTEST_SRCS_ = $(GTEST_DIR)/src/*.cc $(GTEST_DIR)/src/*.h $(GTEST_HEADERS)
 # Project configuration.
 
 SRC_OBJS = build/car.o \
+           build/freeway.o \
            build/junction.o \
            build/segment.o \
            build/toll.o
 TEST_OBJS = build/car_test.o \
+            build/freeway_test.o \
             build/junction_test.o \
             build/segment_test.o \
             build/toll_test.o
@@ -50,13 +52,21 @@ build/gtest_main.a : build/gtest-all.o build/gtest_main.o
 
 # Project builds.
 
-build/project.o : src/project.cc
+build/project.o : src/project.cc include/freeway.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
-build/car.o : src/car.cc include/car.h include/segment.h
+build/car.o : src/car.cc include/car.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 build/car_test.o : test/car_test.cc include/car.h include/segment.h \
                    $(GTEST_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
+
+build/freeway.o : src/freeway.cc include/freeway.h include/car.h \
+                  include/junction.h include/segment.h include/toll.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
+build/freeway_test.o : test/freeway_test.cc include/freeway.h include/car.h \
+                       include/junction.h include/segment.h include/toll.h \
+                       $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
 build/junction.o : src/junction.cc include/junction.h include/car.h \
