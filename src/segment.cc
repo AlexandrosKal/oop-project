@@ -39,18 +39,29 @@ Segment::~Segment() {
 }
 
 void Segment::Enter() {
-  size_t max_allowed_cars;
+  size_t max_allowed_cars, ready_cars_before_pass = 0, num_passed_cars = 0;
   if (prev_ != NULL) {
+    size_t num_cars_before_pass = cars_.size();
+    ready_cars_before_pass = prev_->ready_cars().size();
     max_allowed_cars = capacity_ - cars_.size();
     prev_->Pass(max_allowed_cars);
+    num_passed_cars = cars_.size() - num_cars_before_pass;
   }
 
   size_t cars_before_enter = enter_junction_->Cars().size();
   max_allowed_cars = capacity_ - cars_.size();
   std::vector<Car*> cars = enter_junction_->Operate(max_allowed_cars);
   if (cars.size() < cars_before_enter) {
-    printf("Kathisteriseis stin eisodo tou komvou: %" PRIuS "\n",
+    printf("Kathysteriseis stin eisodo tou komvou %" PRIuS "\n",
            enter_junction_->id());
+
+    if (num_passed_cars < ready_cars_before_pass) {
+      printf("Kathysteriseis meta ton komvo %" PRIuS "\n",
+             enter_junction_->id());
+    }
+  } else {
+    printf("Tireite tis apostaseis asfaleias sto tmima meta ton komvo %" PRIuS
+           "\n", enter_junction_->id());
   }
   cars_.insert(cars_.end(), cars.begin(), cars.end());
 }
