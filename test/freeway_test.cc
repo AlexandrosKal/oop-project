@@ -5,7 +5,7 @@ namespace oop_project {
 
 namespace {
 
-const std::vector<size_t> kCapacities(10, 5);
+const size_t kCapacities[10] = {5};
 
 }
 

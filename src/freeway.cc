@@ -12,8 +12,7 @@
 namespace oop_project {
 
 Freeway::Freeway(size_t num_segments,  size_t segment_ready_percent,
-                 const std::vector<size_t>& segment_capacities,
-                 size_t toll_pass_limit) {
+                 const size_t* segment_capacities, size_t toll_pass_limit) {
   num_cars_ = 0;
   size_t current_id = Junction::current_id();
   segments_.resize(num_segments);
@@ -44,7 +43,7 @@ void Freeway::Operate() {
     segments_[i]->Operate();
     num_cars_ += segments_[i]->num_cars();
   }
-  printf("Car number: %" PRIuS "\n", num_cars_);
+  printf("Cars: %" PRIuS "\n", num_cars_);
 }
 
 size_t Freeway::num_cars() const {

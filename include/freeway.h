@@ -7,7 +7,7 @@ namespace oop_project {
 
 class Freeway {
  public:
-  Freeway(size_t, size_t, const std::vector<size_t>&, size_t);
+  Freeway(size_t, size_t, const size_t*, size_t);
   ~Freeway();
 
   void Operate();
