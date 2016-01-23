@@ -26,6 +26,9 @@ Freeway::Freeway(size_t num_segments,  size_t segment_ready_percent,
                                segment_ready_percent,
                                current_id + num_segments + 1,
                                toll_pass_limit);
+    if (i >= 1) {
+      prev->set_next(segments_[i]);
+    }
     num_cars_ += segments_[i]->num_cars();
   }
   printf("The freeway is in operation.\n");
