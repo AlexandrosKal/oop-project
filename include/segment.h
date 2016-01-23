@@ -18,7 +18,7 @@ class Segment {
   void Pass(size_t);
 
   size_t num_cars() const;
-  std::vector<Car*> ready_cars() const;
+  const std::vector<Car*> ready_cars() const;
   size_t enter_junction() const;
   void set_next(Segment* /*next*/);
 

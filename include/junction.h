@@ -27,9 +27,9 @@ class Junction {
 
   static size_t current_id_;
   std::vector<Toll*> electronic_tolls_;
-  size_t id_;
+  const size_t id_;
   std::vector<Toll*> manned_tolls_;
-  size_t num_junctions_;
+  const size_t num_junctions_;
   size_t pass_limit_;
 };
 

@@ -89,7 +89,7 @@ size_t Segment::num_cars() const {
   return cars_.size();
 }
 
-std::vector<Car*> Segment::ready_cars() const {
+const std::vector<Car*> Segment::ready_cars() const {
   std::vector<Car*> ret;
   for (size_t i = 0; i < cars_.size(); ++i) {
     if (cars_[i]->ready()) {

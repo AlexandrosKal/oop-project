@@ -20,7 +20,7 @@ class Car {
   const Segment* segment() const;
 
  private:
-  size_t exit_junction_;
+  const size_t exit_junction_;
   bool ready_;
   Segment* segment_;
 };
