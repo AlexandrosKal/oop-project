@@ -10,7 +10,7 @@ Toll::Toll(size_t current_junction, size_t num_junctions) {
   cars_.resize(num_cars);
   for (size_t i = 0; i < cars_.size(); ++i) {
     size_t exit_junction = rand() % (num_junctions - current_junction) +
-                           current_junction;
+                           current_junction + 1;
     cars_[i] = new Car(exit_junction, NULL);
   }
 }
