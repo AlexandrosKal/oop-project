@@ -32,7 +32,7 @@ TEST(JunctionTest, IncreasesIdByOne) {
   Junction junction0(10, 5);
   Junction junction1(10, 5);
   Junction junction2(10, 5);
-  ASSERT_GE(junction0.id(), 1);
+  ASSERT_GE(junction0.id(), 0);
   ASSERT_EQ(junction1.id(), junction0.id() + 1);
   ASSERT_EQ(junction2.id(), junction0.id() + 2);
 }

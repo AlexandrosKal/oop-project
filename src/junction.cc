@@ -7,7 +7,7 @@ const size_t Junction::kMaxTollsPerType = 5;
 const size_t Junction::kMaxCarsPerToll = 5;
 
 Junction::Junction(size_t num_junctions, size_t pass_limit)
-  : id_(++current_id_), num_junctions_(num_junctions), pass_limit_(pass_limit) {
+  : id_(current_id_++), num_junctions_(num_junctions), pass_limit_(pass_limit) {
   size_t num_manned_tolls = rand() % kMaxTollsPerType + 1;
   manned_tolls_.resize(num_manned_tolls);
   for (size_t i = 0; i < manned_tolls_.size(); ++i) {
@@ -78,7 +78,7 @@ void Junction::AddRandomCars(const std::vector<Toll*>& tolls) const {
   for (size_t i = 0; i < tolls.size(); ++i) {
     size_t toll_num_cars = rand() % kMaxCarsPerToll;
     for (size_t j = 0; j < toll_num_cars; ++j) {
-      size_t exit_junction = rand() % (num_junctions_ - id_) + id_;
+      size_t exit_junction = rand() % (num_junctions_ - id_) + id_ + 1;
       tolls[i]->Add(new Car(exit_junction, NULL));
     }
   }

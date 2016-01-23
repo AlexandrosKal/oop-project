@@ -12,14 +12,14 @@ TEST(SegmentTest, CreatesRandomCars) {
 }
 
 TEST(SegmentTest, EntersLessOrEqualToCapacity) {
-  Segment prev_segment(10, NULL, 50, 5, 5);
-  Segment segment(10, &prev_segment, 50, 5, 5);
+  Segment prev_segment(10, NULL, 50, 100, 5);
+  Segment segment(10, &prev_segment, 50, 100, 5);
   segment.Enter();
   ASSERT_LE(segment.num_cars(), 10);
 }
 
 TEST(SegmentTest, RemovesCarsFromFreeway) {
-  Segment segment(10, NULL, 50, 5, 5);
+  Segment segment(10, NULL, 50, 100, 5);
   std::vector<Car*> ready_cars = segment.ready_cars();
   size_t num_before_exit = segment.num_cars();
 
@@ -35,7 +35,7 @@ TEST(SegmentTest, RemovesCarsFromFreeway) {
 }
 
 TEST(SegmentTest, Operates) {
-  Segment segment(10, NULL, 50, 5, 5);
+  Segment segment(10, NULL, 50, 100, 5);
   std::vector<Car*> prev_ready_cars = segment.ready_cars();
   segment.Operate();
   std::vector<Car*> ready_cars = segment.ready_cars();
@@ -46,8 +46,8 @@ TEST(SegmentTest, Operates) {
 }
 
 TEST(SegmentTest, PassesReadyCars) {
-  Segment segment(10, NULL, 50, 5, 5);
-  Segment next_segment(10, NULL, 50, 5, 5);
+  Segment segment(10, NULL, 50, 100, 5);
+  Segment next_segment(10, NULL, 50, 100, 5);
   segment.set_next(&next_segment);
 
   std::vector<Car*> ready_cars = segment.ready_cars();
@@ -67,7 +67,7 @@ TEST(SegmentTest, PassesReadyCars) {
 }
 
 TEST(SegmentTest, ReturnsReadyCars) {
-  Segment segment(10, NULL, 50, 5, 5);
+  Segment segment(10, NULL, 50, 100, 5);
   std::vector<Car*> ready_cars = segment.ready_cars();
 
   ASSERT_LE(ready_cars.size(), segment.num_cars());
@@ -77,10 +77,10 @@ TEST(SegmentTest, ReturnsReadyCars) {
 }
 
 TEST(SegmentTest, ReturnsEnterJunction) {
-  Segment segment0(10, NULL, 50, 5, 5);
-  Segment segment1(10, NULL, 50, 5, 5);
-  Segment segment2(10, NULL, 50, 5, 5);
-  ASSERT_GE(segment0.enter_junction(), 1);
+  Segment segment0(10, NULL, 50, 100, 5);
+  Segment segment1(10, NULL, 50, 100, 5);
+  Segment segment2(10, NULL, 50, 100, 5);
+  ASSERT_GE(segment0.enter_junction(), 0);
   ASSERT_EQ(segment1.enter_junction(), segment0.enter_junction() + 1);
   ASSERT_EQ(segment2.enter_junction(), segment0.enter_junction() + 2);
 }
