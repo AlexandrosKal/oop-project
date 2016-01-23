@@ -20,6 +20,7 @@ class Segment {
   const std::vector<Car*>& cars() const;
   size_t num_cars() const;
   const std::vector<Car*> ready_cars() const;
+  size_t capacity() const;
   size_t enter_junction() const;
   void set_next(Segment* /*next*/);
 

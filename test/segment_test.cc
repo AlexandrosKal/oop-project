@@ -84,6 +84,11 @@ TEST(SegmentTest, ReturnsReadyCars) {
   }
 }
 
+TEST(SegmentTest, ReturnsCapacity) {
+  Segment segment(10, NULL, 50, 100, 5);
+  ASSERT_EQ(segment.capacity(), 10);
+}
+
 TEST(SegmentTest, ReturnsEnterJunction) {
   Segment segment0(10, NULL, 50, 100, 5);
   Segment segment1(10, NULL, 50, 100, 5);

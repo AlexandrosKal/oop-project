@@ -103,6 +103,11 @@ const std::vector<Car*> Segment::ready_cars() const {
   return ret;
 }
 
+size_t Segment::capacity() const {
+  return capacity_;
+}
+
+
 size_t Segment::enter_junction() const {
   return enter_junction_->id();
 }
