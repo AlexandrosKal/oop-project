@@ -52,7 +52,8 @@ build/gtest_main.a : build/gtest-all.o build/gtest_main.o
 
 # Project builds.
 
-build/project.o : src/project.cc include/freeway.h
+build/project.o : src/project.cc include/freeway.h include/car.h \
+                  include/junction.h include/segment.h include/toll.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
 build/car.o : src/car.cc include/car.h

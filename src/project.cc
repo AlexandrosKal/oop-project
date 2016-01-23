@@ -11,7 +11,6 @@
 #define PRIuS __PRIS_PREFIX "u"
 
 int main(int argc, char** argv) {
-  setbuf(stdout, NULL);
   unsigned seed = time(NULL);
   int simulation_steps = 10;
   size_t num_segments = 5;
