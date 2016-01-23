@@ -1,6 +1,15 @@
 #include "segment.h"
+#include <cstdio>
 #include <cstdlib>
 #include <algorithm>
+
+#ifdef _LP64
+#define __PRIS_PREFIX "z"
+#else
+#define __PRIS_PREFIX
+#endif
+
+#define PRIuS __PRIS_PREFIX "u"
 
 namespace oop_project {
 
@@ -36,8 +45,13 @@ void Segment::Enter() {
     prev_->Pass(max_allowed_cars);
   }
 
+  size_t cars_before_enter = enter_junction_->Cars().size();
   max_allowed_cars = capacity_ - cars_.size();
   std::vector<Car*> cars = enter_junction_->Operate(max_allowed_cars);
+  if (cars.size() < cars_before_enter) {
+    printf("Kathisteriseis stin eisodo tou komvou: %" PRIuS "\n",
+           enter_junction_->id());
+  }
   cars_.insert(cars_.end(), cars.begin(), cars.end());
 }
 
