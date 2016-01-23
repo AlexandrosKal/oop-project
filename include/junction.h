@@ -17,6 +17,7 @@ class Junction {
   std::vector<Car*> Operate(size_t);
   size_t NumCars() const;
 
+  static size_t current_id();
   size_t id() const;
   size_t pass_limit() const;
 

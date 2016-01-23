@@ -62,6 +62,10 @@ std::vector<Car*> Junction::Operate(size_t max_allowed_cars) {
   return ret;
 }
 
+size_t Junction::current_id() {
+  return current_id_;
+}
+
 size_t Junction::id() const {
   return id_;
 }
