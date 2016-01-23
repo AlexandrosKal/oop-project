@@ -3,8 +3,8 @@
 
 namespace oop_project {
 
-const size_t Junction::kMaxTollsPerType = 5;
-const size_t Junction::kMaxCarsPerToll = 5;
+const size_t Junction::kMaxTollsPerType = 3;
+const size_t Junction::kMaxCarsPerToll = 2;
 
 Junction::Junction(size_t num_junctions, size_t pass_limit)
   : id_(current_id_++), num_junctions_(num_junctions), pass_limit_(pass_limit) {

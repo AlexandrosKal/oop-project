@@ -3,7 +3,7 @@
 
 namespace oop_project {
 
-const size_t Toll::kMaxCars = 5;
+const size_t Toll::kMaxCars = 2;
 
 Toll::Toll(size_t current_junction, size_t num_junctions) {
   size_t num_cars = rand() % kMaxCars + 1;
