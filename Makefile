@@ -33,7 +33,7 @@ CXXFLAGS += -std=c++03 -Wall -Wextra -pedantic -pthread
 .PHONY = all clean test
 all : $(BIN_TARGET)
 clean :
-	$(RM) build/*
+	$(RM) -r build/*
 test : $(TEST_TARGET)
 	./styleguide/cpplint/cpplint.py include/* src/* test/* && ./$(TEST_TARGET)
 
