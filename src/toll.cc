@@ -41,6 +41,10 @@ std::vector<Car*> Toll::Remove(size_t num_cars) {
   return ret;
 }
 
+const std::vector<Car*>& Toll::cars() const {
+  return cars_;
+}
+
 size_t Toll::num_cars() const {
   return cars_.size();
 }

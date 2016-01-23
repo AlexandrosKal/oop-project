@@ -30,6 +30,20 @@ Junction::~Junction() {
   }
 }
 
+
+const std::vector<Car*> Junction::Cars() const {
+  std::vector<Car*> ret, temp;
+  for (size_t i = 0; i < manned_tolls_.size(); ++i) {
+    temp = manned_tolls_[i]->cars();
+    ret.insert(ret.end(), temp.begin(), temp.end());
+  }
+  for (size_t i = 0; i < electronic_tolls_.size(); ++i) {
+    temp = electronic_tolls_[i]->cars();
+    ret.insert(ret.end(), temp.begin(), temp.end());
+  }
+  return ret;
+}
+
 size_t Junction::NumCars() const {
   return CountCars(manned_tolls_) + CountCars(electronic_tolls_);
 }

@@ -17,6 +17,7 @@ class Toll {
   std::vector<Car*> Remove();
   std::vector<Car*> Remove(size_t);
 
+  const std::vector<Car*>& cars() const;
   size_t num_cars() const;
 
  private:

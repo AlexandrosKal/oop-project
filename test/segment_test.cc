@@ -66,6 +66,14 @@ TEST(SegmentTest, PassesReadyCars) {
   ASSERT_LE(next_segment.num_cars(), 10);
 }
 
+TEST(SegmentTest, CreatesCarsWithGreaterExitJunction) {
+  Segment segment(10, NULL, 50, 100, 5);
+  std::vector<Car*> cars = segment.cars();
+  for (size_t i = 0; i < cars.size(); ++i) {
+    ASSERT_GT(cars[i]->exit_junction(), segment.enter_junction());
+  }
+}
+
 TEST(SegmentTest, ReturnsReadyCars) {
   Segment segment(10, NULL, 50, 100, 5);
   std::vector<Car*> ready_cars = segment.ready_cars();

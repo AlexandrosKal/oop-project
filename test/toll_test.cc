@@ -58,4 +58,12 @@ TEST(TollTest, RemovesAllCars) {
   }
 }
 
+TEST(TollTest, CreatesCarsWithGreaterExitJunction) {
+  Toll toll(5, 10);
+  std::vector<Car*> cars = toll.cars();
+  for (size_t i = 0; i < cars.size(); ++i) {
+    ASSERT_GT(cars[i]->exit_junction(), 5);
+  }
+}
+
 }  // namespace oop_project

@@ -17,6 +17,7 @@ class Segment {
   void Operate();
   void Pass(size_t);
 
+  const std::vector<Car*>& cars() const;
   size_t num_cars() const;
   const std::vector<Car*> ready_cars() const;
   size_t enter_junction() const;

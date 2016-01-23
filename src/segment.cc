@@ -85,6 +85,10 @@ void Segment::Pass(size_t max_allowed_cars) {
   }
 }
 
+const std::vector<Car*>& Segment::cars() const {
+  return cars_;
+}
+
 size_t Segment::num_cars() const {
   return cars_.size();
 }
