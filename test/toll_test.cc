@@ -30,6 +30,9 @@ TEST(TollTest, RemovesSomeCars) {
 
   std::vector<Car*> cars = toll.Remove(prev_num_cars - 1);
   ASSERT_EQ(cars.size(), prev_num_cars - 1);
+  for (size_t i = 0; i < cars.size(); ++i) {
+    delete cars[i];
+  }
 }
 
 TEST(TollTest, HandlesOverflowRemoval) {
@@ -38,6 +41,9 @@ TEST(TollTest, HandlesOverflowRemoval) {
 
   std::vector<Car*> cars = toll.Remove(num_cars + 10);
   ASSERT_LE(cars.size(), num_cars);
+  for (size_t i = 0; i < cars.size(); ++i) {
+    delete cars[i];
+  }
 }
 
 TEST(TollTest, RemovesAllCars) {
@@ -47,6 +53,9 @@ TEST(TollTest, RemovesAllCars) {
   std::vector<Car*> cars = toll.Remove();
   ASSERT_EQ(cars.size(), prev_num_cars);
   ASSERT_EQ(toll.num_cars(), 0);
+  for (size_t i = 0; i < cars.size(); ++i) {
+    delete cars[i];
+  }
 }
 
 }  // namespace oop_project
