@@ -12,6 +12,7 @@ class Freeway {
 
   void Operate();
 
+  size_t num_cars() const;
   const std::vector<Segment*>& segments() const;
 
  private:

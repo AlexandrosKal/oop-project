@@ -1,4 +1,5 @@
 #include "freeway.h"
+#include <cstdio>
 
 #ifdef _LP64
 #define __PRIS_PREFIX "z"
@@ -44,6 +45,10 @@ void Freeway::Operate() {
     num_cars_ += segments_[i]->num_cars();
   }
   printf("Car number: %" PRIuS "\n", num_cars_);
+}
+
+size_t Freeway::num_cars() const {
+  return num_cars_;
 }
 
 const std::vector<Segment*>& Freeway::segments() const {
