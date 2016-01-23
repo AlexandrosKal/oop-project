@@ -1,6 +1,8 @@
 #include "freeway.h"
 #include <cstdio>
 #include <cstdlib>
+#include <cstring>
+#include <ctime>
 
 #ifdef _LP64
 #define __PRIS_PREFIX "z"
