@@ -7,75 +7,75 @@ are not binding and equivalents may be used.
 
 ### Freeway
 
-Variable  |Description
-:---------|:----------
-`cars`    |`vector<Car*>` Expandable
-`segments`|`vector<Segment*>` Constant
-
 Method     |Description
 :----------|:----------
 `Freeway(num_segments, toll_pass_limit, segment_ready_percent, segment_capacities)`|Prints `Αυτοκινητόδρομος σε λειτουργία` and constructs its data members
-`Operate()`                                                                        |Calls the `Operate()` method of each `Segment` from end to start and prints the `Car` number
+`Operate()`                                                                        |`void` Calls the `Operate()` method of each `Segment` from end to start and prints the `Car` number
+`num_cars()`                                                                       |`size_t`
+`segments()`                                                                       |`vector<Segment*>`
 
 ### Segment
 
 Variable        |Description
 :---------------|:----------
-`cars`          |`vector<Car*>`
-`capacity`      |`size_t`
-`enter_junction`|`Junction*`
-`next`          |`Segment*`
-`previous`      |`Segment*`
-`ready_percent` |`int`
+`kMaxCars`      |`size_t`
 
-Method                                              |Description
-:---------------------------------------------------|:----------
-`Segment(toll_pass_limit, ready_percent, capacity)` |Randomly creates `Cars` that run into the `Segment`
-`Enter()`                                           |`void` Max possible `Cars` enter from `Tolls` and previous `Segment`
-`Exit()`                                            |`void` Max possible `Cars` exit the `Freeway`
-`Operate()`                                         |`void` Calls `Exit()`, `Enter()` and randomly sets `ready_percent`% cars as `ready`
-`Pass()`                                            |`void` Max possible `Cars` exit the `Segment` and enter the next one
-`num_cars()`                                        |`size_t`
+Method                                                                         |Description
+:------------------------------------------------------------------------------|:----------
+`Segment(capacity, prev, ready_percent, num_junctions, toll_pass_limit)`       |Randomly creates `Cars` that run into the `Segment`
+`Enter()`                                                                      |`void` Max possible `Cars` enter from `Tolls` and previous `Segment`
+`Exit()`                                                                       |`void` Max possible `Cars` exit the `Freeway`
+`Operate()`                                                                    |`void` Calls `Exit()`, `Enter()` and randomly sets `ready_percent`% cars as `ready`
+`Pass(size_t)`                                                                 |`void` Max possible `Cars` exit the `Segment` and enter the next one
+`cars()`                                                                       |`vector<Car*>`
+`num_cars()`                                                                   |`size_t`
+`ready_cars()`                                                                 |`vector<Car*>`
+`capacity()`                                                                   |`size_t`
+`enter_junction()`                                                             |`size_t`
+`set_next()`                                                                   |`void`
 
 ### Junction
 
-Variable          |Description
-:-----------------|:----------
-`manned_tolls`    |`vector<Tolls*>`
-`electronic_tolls`|`vector<Tolls*>`
-`id`              |`size_t`
-`manned_tolls`    |`vector<Tolls*>`
-`pass_limit`      |`size_t` Number of `Cars` allowed to enter from `manned_tolls`. Double for `electronic_tolls`
+Variable           |Description
+:------------------|:----------
+`kMaxTollsPerType` |`size_t`
+`kMaxCarsPerToll`  |`size_t`
 
-Method                      |Description
-:---------------------------|:----------
-`Junction(pass_limit)`      |Creates a random number of `Tolls
-`Operate(segment)`          |`void` `Cars` enter the `Segment` respecting the `capacity` and the `pass_limit`. If `3*pass_limit Cars` are not allowed to enter, then the max number of `Cars` allowed to pass is distributed equally among the tolls
-`id()`                      |`size_t`
+Method                                              |Description
+:---------------------------------------------------|:----------
+`Junction(num_junctions, pass_limit)`               |Creates a random number of `Tolls`
+`Operate(max_allowed_cars)`                         |`vector<Car*>` `Cars` enter the `Segment` respecting the `capacity` and the `pass_limit`. If a number of `Cars` lower than `3 * pass_limit` can enter, the `pass_limit` is decreased. If exactly `3 * pass_limit` cars enter then the `pass_limit` is increased. Finally, `Cars` are added in each `Toll`.
+`Cars()`                                            |`vector<Car*>`
+`NumCars()`                                         |`size_t`
+`current_id()`                                      |`size_t`
+`id()`                                              |`size_t`
+`pass_limit()`                                      |`size_t`
 
 ### Toll
 
 Variable|Description
-:-------|:----------
-`cars`  |`vector<Car*>`
+:-----------|:----------
+`kMaxCars`  |`size_t`
 
-Method            |Description
-:-----------------|:----------
-`Toll()`          |Creates a random number of `Cars`
-`Add(car)`        |`void`
-`Remove(num_cars)`|`void`
+Method                                           |Description
+:------------------------------------------------|:----------
+`Toll(current_junction, num_junctions)`          |Creates a random number of `Cars`
+`Add(car)`                                       |`void`
+`Remove()        `                               |`vector<Car*>`
+`Remove(num_cars)`                               |`vector<Car*>`
+`cars()`                                         |`vector<Car*>`
+`num_cars()`                                     |`size_t`
 
 ### Car
-
-Variable       |Description
-:--------------|:----------
-`exit_junction`|`size_t`
-`ready`        |`bool`
-`segment`      |`Segment*` Points to the current `Segment` or `NULL` if not inside a `Segment`
 
 Method                       |Description
 :----------------------------|:-----------------
 `Car(exit_junction, segment)`|`ready` is `false`
+`exit_junction()`            |`size_t`
+`set_ready(state)`           |`void`
+`ready()`                    |`bool`
+`set_segment(segment)`       |`void`
+`segment()`                  |`Segment*`
 
 -------------------------------------------------------------------------------
 
