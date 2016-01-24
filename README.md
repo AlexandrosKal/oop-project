@@ -49,8 +49,8 @@ continuous integration service.
 
 ### Operating systems
 
-- [Ubuntu GNU/Linux](http://www.ubuntu.com/) 15.10
 - [OS X](https://www.apple.com/osx/) 10.11.2
+- [Ubuntu GNU/Linux](http://www.ubuntu.com/) 15.10
 
 ### Tools
 
