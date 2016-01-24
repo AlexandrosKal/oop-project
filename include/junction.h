@@ -4,7 +4,7 @@
 #include <vector>
 #include "toll.h"
 
-namespace oop_project {
+namespace project {
 
 class Junction {
  public:
@@ -35,6 +35,6 @@ class Junction {
   size_t pass_limit_;
 };
 
-}  // namespace oop_project
+}  // namespace project
 
 #endif  // JUNCTION_H_

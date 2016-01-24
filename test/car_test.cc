@@ -2,7 +2,7 @@
 #include "gtest/gtest.h"
 #include "segment.h"
 
-namespace oop_project {
+namespace project {
 
 TEST(CarTest, InitializesDataMembers) {
   Segment segment(5, NULL, 5, 5, 5);
@@ -43,4 +43,4 @@ TEST(CarTest, ChangesSegmentValue) {
   ASSERT_EQ(car.segment(), &segment);
 }
 
-}  // namespace oop_project
+}  // namespace project

@@ -1,7 +1,7 @@
 #include "junction.h"
 #include <cstdlib>
 
-namespace oop_project {
+namespace project {
 
 const size_t Junction::kMaxTollsPerType = 3;
 const size_t Junction::kMaxCarsPerToll = 2;
@@ -125,4 +125,4 @@ std::vector<Car*> Junction::RemoveCars(const std::vector<Toll*>& tolls,
 
 size_t Junction::current_id_ = 0;
 
-}  // namespace oop_project
+}  // namespace project

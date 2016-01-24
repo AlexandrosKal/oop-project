@@ -3,7 +3,7 @@
 
 #include <cstddef>
 
-namespace oop_project {
+namespace project {
 
 class Segment;
 
@@ -25,6 +25,6 @@ class Car {
   Segment* segment_;
 };
 
-}  // namespace oop_project
+}  // namespace project
 
 #endif  // CAR_H_

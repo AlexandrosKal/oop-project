@@ -1,7 +1,7 @@
 #include "toll.h"
 #include <cstdlib>
 
-namespace oop_project {
+namespace project {
 
 const size_t Toll::kMaxCars = 2;
 
@@ -49,4 +49,4 @@ size_t Toll::num_cars() const {
   return cars_.size();
 }
 
-}  // namespace oop_project
+}  // namespace project

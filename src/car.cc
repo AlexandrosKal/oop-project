@@ -1,6 +1,6 @@
 #include "car.h"
 
-namespace oop_project {
+namespace project {
 
 Car::Car(size_t exit_junction, Segment* segment)
   : exit_junction_(exit_junction), ready_(false), segment_(segment) {
@@ -26,4 +26,4 @@ const Segment* Car::segment() const {
   return segment_;
 }
 
-}  // namespace oop_project
+}  // namespace project

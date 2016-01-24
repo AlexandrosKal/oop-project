@@ -4,7 +4,7 @@
 #include <vector>
 #include "car.h"
 
-namespace oop_project {
+namespace project {
 
 class Toll {
  public:
@@ -24,6 +24,6 @@ class Toll {
   std::vector<Car*> cars_;
 };
 
-}  // namespace oop_project
+}  // namespace project
 
 #endif  // TOLL_H_

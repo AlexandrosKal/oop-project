@@ -1,7 +1,7 @@
 #include "toll.h"
 #include "gtest/gtest.h"
 
-namespace oop_project {
+namespace project {
 
 TEST(TollTest, CreatesCar) {
   Toll toll(5, 10);
@@ -66,4 +66,4 @@ TEST(TollTest, CreatesCarsWithGreaterExitJunction) {
   }
 }
 
-}  // namespace oop_project
+}  // namespace project

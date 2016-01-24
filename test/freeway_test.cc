@@ -1,7 +1,7 @@
 #include "freeway.h"
 #include "gtest/gtest.h"
 
-namespace oop_project {
+namespace project {
 
 namespace {
 
@@ -41,4 +41,4 @@ TEST(FreewayTest, UpdatesNumCarsAfterOperate) {
   ASSERT_EQ(freeway.num_cars(), cars);
 }
 
-}  // namespace oop_project
+}  // namespace project

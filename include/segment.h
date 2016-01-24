@@ -3,7 +3,7 @@
 
 #include "junction.h"
 
-namespace oop_project {
+namespace project {
 
 class Segment {
  public:
@@ -33,6 +33,6 @@ class Segment {
   const int ready_percent_;
 };
 
-}  // namespace oop_project
+}  // namespace project
 
 #endif  // SEGMENT_H_

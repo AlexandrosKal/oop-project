@@ -1,7 +1,7 @@
 #include "junction.h"
 #include "gtest/gtest.h"
 
-namespace oop_project {
+namespace project {
 
 TEST(JunctionTest, CreatesCarsWithGreaterExitJunction) {
   Junction junction(100, 5);
@@ -50,4 +50,4 @@ TEST(JunctionTest, ReturnsPassLimit) {
   ASSERT_EQ(junction.pass_limit(), 5);
 }
 
-}  // namespace oop_project
+}  // namespace project

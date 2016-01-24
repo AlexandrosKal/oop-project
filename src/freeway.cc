@@ -9,7 +9,7 @@
 
 #define PRIuS __PRIS_PREFIX "u"
 
-namespace oop_project {
+namespace project {
 
 Freeway::Freeway(size_t num_segments,  size_t segment_ready_percent,
                  const size_t* segment_capacities, size_t toll_pass_limit) {
@@ -57,4 +57,4 @@ const std::vector<Segment*>& Freeway::segments() const {
   return segments_;
 }
 
-}  // namespace oop_project
+}  // namespace project

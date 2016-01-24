@@ -3,7 +3,7 @@
 
 #include "segment.h"
 
-namespace oop_project {
+namespace project {
 
 class Freeway {
  public:
@@ -20,6 +20,6 @@ class Freeway {
   std::vector<Segment*> segments_;
 };
 
-}  // namespace oop_project
+}  // namespace project
 
 #endif  // FREEWAY_H_

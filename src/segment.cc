@@ -11,7 +11,7 @@
 
 #define PRIuS __PRIS_PREFIX "u"
 
-namespace oop_project {
+namespace project {
 
 const size_t Segment::kMaxCars = 5;
 
@@ -141,4 +141,4 @@ void Segment::set_next(Segment* next) {
   next_ = next;
 }
 
-}  // namespace oop_project
+}  // namespace project

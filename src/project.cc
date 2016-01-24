@@ -49,8 +49,8 @@ int main(int argc, char** argv) {
     scanf("%" PRIuS, segment_capacities + i);
   }
 
-  oop_project::Freeway freeway(num_segments, segment_ready_percent,
-                               segment_capacities, toll_pass_limit);
+  project::Freeway freeway(num_segments, segment_ready_percent,
+                           segment_capacities, toll_pass_limit);
   printf("Cars: %" PRIuS "\n", freeway.num_cars());
   for (int i = 0; i < simulation_steps; ++i) {
     printf("\nOperation: %d\n", i + 1);

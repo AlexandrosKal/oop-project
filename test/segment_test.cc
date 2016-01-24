@@ -1,7 +1,7 @@
 #include "segment.h"
 #include "gtest/gtest.h"
 
-namespace oop_project {
+namespace project {
 
 TEST(SegmentTest, CreatesRandomCars) {
   Segment segment(10, NULL, 50, 5, 5);
@@ -98,4 +98,4 @@ TEST(SegmentTest, ReturnsEnterJunction) {
   ASSERT_EQ(segment2.enter_junction(), segment0.enter_junction() + 2);
 }
 
-}  // namespace oop_project
+}  // namespace project
