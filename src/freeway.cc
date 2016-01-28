@@ -31,7 +31,7 @@ Freeway::Freeway(size_t num_segments,  size_t segment_ready_percent,
     }
     num_cars_ += segments_[i]->num_cars();
   }
-  printf("The freeway is in operation.\n");
+  printf("Aftokinitodromos se leitourgia\n");
 }
 
 Freeway::~Freeway() {
@@ -46,7 +46,7 @@ void Freeway::Operate() {
     segments_[i]->Operate();
     num_cars_ += segments_[i]->num_cars();
   }
-  printf("Cars: %" PRIuS "\n", num_cars_);
+  printf("Arithmos aftokiniton: %" PRIuS "\n", num_cars_);
 }
 
 size_t Freeway::num_cars() const {

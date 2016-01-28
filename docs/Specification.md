@@ -43,7 +43,7 @@ Method                               |Description
 `Junction(num_junctions, pass_limit)`|Creates a random number of `Tolls`
 `Cars()`                             |`vector<Car*>`
 `NumCars()`                          |`size_t`
-`Operate(max_allowed_cars)`          |`vector<Car*>` Returns maximum `Cars` respecting the `Segment.capacity()` and the `pass_limit`. If less than `3 * pass_limit` `Cars` are allowed to enter, the `pass_limit` is decreased. If `3 * pass_limit` `Cars` enter, then the `pass_limit` is increased. Finally, new `Cars` are added in each `Toll`
+`Operate(max_allowed_cars)`          |`vector<Car*>` Returns max `Cars` respecting the `Segment.capacity()` and the `pass_limit`. If less than `3 * pass_limit` `Cars` are allowed to enter, the `pass_limit` is decreased. If `3 * pass_limit` `Cars` enter, then the `pass_limit` is increased. Finally, new `Cars` are added in each `Toll`
 `current_id()`                       |`static size_t` Total number of `Junctions` initialized at `0`
 `id()`                               |`size_t`
 `pass_limit()`                       |`size_t`
@@ -86,7 +86,7 @@ Argument |Description
 `seed`   |`uint` Randomness seed
 `N`      |`int` Simulation steps number
 `NSegs`  |`size_t` Freeway segments number
-`K`      |`size_t` Initial maximum car number that can pass a manned toll station
+`K`      |`size_t` Initial max car number that can pass a manned toll station
 `Percent`|`int` Car percent on a segment that becomes `ready` in the next step
 
 If any of these arguments is not provided, a default value **must** be used.
