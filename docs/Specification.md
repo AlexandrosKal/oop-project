@@ -66,10 +66,10 @@ Method                                           |Description
 ### Car
 
 Method                       |Description
-:----------------------------|:-----------------
-`Car(exit_junction, segment)`|`ready` is `false`
+:----------------------------|:----------
+`Car(exit_junction, segment)`|`ready` becomes `false`
 `exit_junction()`            |`size_t`
-`set_ready(state)`           |`void`
+`set_ready(ready)`           |`void`
 `ready()`                    |`bool`
 `set_segment(segment)`       |`void`
 `segment()`                  |`Segment*`
