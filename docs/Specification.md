@@ -33,20 +33,20 @@ Method                                                                         |
 
 ### Junction
 
-Variable           |Description
-:------------------|:----------
-`kMaxTollsPerType` |`size_t`
-`kMaxCarsPerToll`  |`size_t`
+Variable          |Description
+:-----------------|:----------
+`kMaxTollsPerType`|`size_t` Maximum number of tolls generated at each `Junction` `>= 1`
+`kMaxCarsPerToll` |`size_t` Maximum number of cars generated at each `Toll` `>= 1`
 
-Method                                              |Description
-:---------------------------------------------------|:----------
-`Junction(num_junctions, pass_limit)`               |Creates a random number of `Tolls`
-`Operate(max_allowed_cars)`                         |`vector<Car*>` `Cars` enter the `Segment` respecting the `capacity` and the `pass_limit`. If a number of `Cars` lower than `3 * pass_limit` can enter, the `pass_limit` is decreased. If exactly `3 * pass_limit` cars enter then the `pass_limit` is increased. Finally, `Cars` are added in each `Toll`.
-`Cars()`                                            |`vector<Car*>`
-`NumCars()`                                         |`size_t`
-`current_id()`                                      |`size_t`
-`id()`                                              |`size_t`
-`pass_limit()`                                      |`size_t`
+Method                               |Description
+:------------------------------------|:----------
+`Junction(num_junctions, pass_limit)`|Creates a random number of `Tolls`
+`Cars()`                             |`vector<Car*>`
+`NumCars()`                          |`size_t`
+`Operate(max_allowed_cars)`          |`vector<Car*>` Returns maximum `Cars` respecting the `Segment.capacity()` and the `pass_limit`. If less than `3 * pass_limit` `Cars` are allowed to enter, the `pass_limit` is decreased. If `3 * pass_limit` `Cars` enter, then the `pass_limit` is increased. Finally, new `Cars` are added in each `Toll`
+`current_id()`                       |`static size_t` Total number of `Junctions` initialized at `0`
+`id()`                               |`size_t`
+`pass_limit()`                       |`size_t`
 
 ### Toll
 
