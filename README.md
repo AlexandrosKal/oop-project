@@ -49,6 +49,7 @@ continuous integration service.
 
 ### Operating systems
 
+- [Fedora](https://getfedora.org/) 23
 - [OS X](https://www.apple.com/osx/) 10.11.2
 - [Ubuntu GNU/Linux](http://www.ubuntu.com/) 15.10
 
@@ -56,9 +57,9 @@ continuous integration service.
 
 - [Apple LLVM](https://developer.apple.com/library/mac/documentation/CompilerTools/Conceptual/LLVMCompilerOverview/)
   7.0.2
-- Git 2.7.0
-- GNU Compiler Collection 5.2.1
-- GNU Make 3.81
+- Git 2.5.0
+- GNU Compiler Collection 5.3.1
+- GNU Make 4.0
 - Google Test
 - Travis CI
 
