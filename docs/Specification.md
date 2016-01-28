@@ -50,18 +50,18 @@ Method                                              |Description
 
 ### Toll
 
-Variable|Description
-:-----------|:----------
-`kMaxCars`  |`size_t`
+Variable  |Description
+:---------|:----------
+`kMaxCars`|`size_t` Max number of cars generated in each `Toll` `>= 1`
 
-Method                                           |Description
-:------------------------------------------------|:----------
-`Toll(current_junction, num_junctions)`          |Creates a random number of `Cars`
-`Add(car)`                                       |`void`
-`Remove()        `                               |`vector<Car*>`
-`Remove(num_cars)`                               |`vector<Car*>`
-`cars()`                                         |`vector<Car*>`
-`num_cars()`                                     |`size_t`
+Method                                 |Description
+:--------------------------------------|:----------
+`Toll(current_junction, num_junctions)`|Creates a random number of `Cars`
+`Add(car)`                             |`void`
+`Remove()        `                     |`vector<Car*>` Removes all `Cars`
+`Remove(num_cars)`                     |`vector<Car*>` Removes at most `num_cars` `Cars`
+`cars()`                               |`vector<Car*>`
+`num_cars()`                           |`size_t`
 
 ### Car
 
