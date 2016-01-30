@@ -62,6 +62,7 @@ continuous integration service.
 - GNU Make 4.0
 - Google Test
 - Travis CI
+- [Valgrind](http://valgrind.org/) 3.11
 
 ## Authors
 
