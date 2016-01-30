@@ -1,4 +1,4 @@
-# Compiled Object files
+# Compiled object files
 *.slo
 *.lo
 *.o
@@ -6,11 +6,11 @@
 *.obj
 *.elf
 
-# Precompiled Headers
+# Precompiled headers
 *.gch
 *.pch
 
-# Compiled Dynamic libraries
+# Compiled dynamic libraries
 *.so
 *.so.*
 *.dylib
@@ -19,7 +19,7 @@
 # Fortran module files
 *.mod
 
-# Compiled Static libraries
+# Compiled static libraries
 *.lai
 *.la
 *.a
