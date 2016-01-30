@@ -1,5 +1,5 @@
-Copyright (c) 2016, Alexandros Kalimeris
-Copyright (c) 2016, Mario Saldinger
+- Copyright &copy; 2016, Alexandros Kalimeris
+- Copyright &copy; 2016, Mario Saldinger
 
 Permission to use, copy, modify, and/or distribute this software for any purpose
 with or without fee is hereby granted, provided that the above copyright notice

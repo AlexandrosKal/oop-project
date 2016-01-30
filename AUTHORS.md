@@ -1,0 +1,2 @@
+- Alexandros Kalimeris <kalimerisalx@gmail.com> <sdi1400056@di.uoa.gr>
+- Mario Saldinger <mariosaldinger@gmail.com> <sdi1400177@di.uoa.gr>
