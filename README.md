@@ -51,7 +51,7 @@ continuous integration service.
 
 - [Fedora](https://getfedora.org/) 23
 - [OS X](https://www.apple.com/osx/) 10.11.2
-- [Ubuntu GNU/Linux](http://www.ubuntu.com/) 15.10
+- [Ubuntu](http://www.ubuntu.com/) 15.10
 
 ### Tools
 
