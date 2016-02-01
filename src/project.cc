@@ -1,16 +1,9 @@
-#include "freeway.h"
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
 #include <ctime>
-
-#ifdef _LP64
-#define __PRIS_PREFIX "z"
-#else
-#define __PRIS_PREFIX
-#endif
-
-#define PRIuS __PRIS_PREFIX "u"
+#include "freeway.h"
+#include "sizetypes.h"
 
 int main(int argc, char** argv) {
   unsigned seed = time(NULL);

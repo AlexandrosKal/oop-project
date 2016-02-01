@@ -1,13 +1,6 @@
 #include "freeway.h"
 #include <cstdio>
-
-#ifdef _LP64
-#define __PRIS_PREFIX "z"
-#else
-#define __PRIS_PREFIX
-#endif
-
-#define PRIuS __PRIS_PREFIX "u"
+#include "sizetypes.h"
 
 namespace project {
 

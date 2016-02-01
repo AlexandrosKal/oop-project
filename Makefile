@@ -52,7 +52,8 @@ build/gtest_main.a : build/gtest-all.o build/gtest_main.o
 # Project builds
 
 build/project.o : src/project.cc include/freeway.h include/car.h \
-                  include/junction.h include/segment.h include/toll.h
+                  include/junction.h include/segment.h include/sizetypes.h \
+                  include/toll.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
 build/car.o : src/car.cc include/car.h
@@ -62,7 +63,8 @@ build/car_test.o : test/car_test.cc include/car.h include/segment.h \
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
 build/freeway.o : src/freeway.cc include/freeway.h include/car.h \
-                  include/junction.h include/segment.h include/toll.h
+                  include/junction.h include/segment.h include/sizetypes.h \
+                  include/toll.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 build/freeway_test.o : test/freeway_test.cc include/freeway.h include/car.h \
                        include/junction.h include/segment.h include/toll.h \
@@ -77,7 +79,7 @@ build/junction_test.o : test/junction_test.cc include/junction.h \
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
 build/segment.o : src/segment.cc include/segment.h include/car.h \
-                  include/junction.h include/toll.h
+                  include/junction.h include/sizetypes.h include/toll.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 build/segment_test.o : test/segment_test.cc include/segment.h include/car.h \
                        include/junction.h include/toll.h $(GTEST_HEADERS)
