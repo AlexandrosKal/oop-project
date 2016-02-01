@@ -1,3 +1,5 @@
+#include <cstddef>
+
 // printf macros for size_t, in the style of inttypes.h
 #ifdef _LP64
 #define __PRIS_PREFIX "z"
