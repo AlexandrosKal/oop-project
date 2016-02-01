@@ -1,3 +1,6 @@
+#ifndef SIZE_TYPES_H_
+#define SIZE_TYPES_H_
+
 #include <cstddef>
 
 // printf macros for size_t, in the style of inttypes.h
@@ -17,3 +20,5 @@
 #define PRIuS __PRIS_PREFIX "u"
 #define PRIXS __PRIS_PREFIX "X"
 #define PRIoS __PRIS_PREFIX "o"
+
+#endif  // SIZE_TYPES_H_
