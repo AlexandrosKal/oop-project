@@ -1,11 +1,11 @@
-# Google Test configuration.
+# Google Test configuration
 
 GTEST_DIR = googletest/googletest
 GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
                 $(GTEST_DIR)/include/gtest/internal/*.h
 GTEST_SRCS_ = $(GTEST_DIR)/src/*.cc $(GTEST_DIR)/src/*.h $(GTEST_HEADERS)
 
-# Project configuration.
+# Project configuration
 
 SRC_OBJS = build/car.o \
            build/freeway.o \
@@ -21,14 +21,13 @@ TEST_OBJS = build/car_test.o \
 BIN_TARGET = build/project.out
 TEST_TARGET = build/project_test.out
 
-# Flags passed to the preprocessor.
-CPPFLAGS += -isystem $(GTEST_DIR)/include -iquote include
+# Flags passed to preprocessor, compiler and linker
 
-# Flags passed to the C++ compiler.
-#CXXFLAGS += -std=c++03 -Weverything -pedantic -pthread
-CXXFLAGS += -std=c++03 -Wall -Wextra -pedantic -pthread
+CPPFLAGS += -isystem $(GTEST_DIR)/include -iquoteinclude -pthread
+CXXFLAGS += -std=c++03 -pedantic -Wextra -Wall
+LDFLAGS += -pthread
 
-# Build targets.
+# Build targets
 
 .PHONY = all clean test
 all : $(BIN_TARGET)
@@ -37,7 +36,7 @@ clean :
 test : $(TEST_TARGET)
 	./styleguide/cpplint/cpplint.py include/* src/* test/* && ./$(TEST_TARGET)
 
-# Builds Google Test.
+# Builds Google Test
 
 build/gtest-all.o : $(GTEST_SRCS_)
 	$(CXX) $(CPPFLAGS) -I$(GTEST_DIR) $(CXXFLAGS) -c \
@@ -50,7 +49,7 @@ build/gtest_main.o : $(GTEST_SRCS_)
 build/gtest_main.a : build/gtest-all.o build/gtest_main.o
 	$(AR) $(ARFLAGS) $@ $^
 
-# Project builds.
+# Project builds
 
 build/project.o : src/project.cc include/freeway.h include/car.h \
                   include/junction.h include/segment.h include/toll.h
@@ -91,6 +90,6 @@ build/toll_test.o : test/toll_test.cc include/toll.h include/car.h \
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
 $(BIN_TARGET) : $(SRC_OBJS) build/project.o
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
+	$(CXX) $(LDFLAGS) $^ -o $@
 $(TEST_TARGET) : $(SRC_OBJS) $(TEST_OBJS) build/gtest_main.a
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
+	$(CXX) $(LDFLAGS) $^ -o $@
