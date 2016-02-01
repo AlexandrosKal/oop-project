@@ -1,6 +1,7 @@
 #ifndef FREEWAY_H_
 #define FREEWAY_H_
 
+#include <vector>
 #include "segment.h"
 
 namespace project {

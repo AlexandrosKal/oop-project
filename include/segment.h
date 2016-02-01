@@ -1,6 +1,7 @@
 #ifndef SEGMENT_H_
 #define SEGMENT_H_
 
+#include <vector>
 #include "junction.h"
 
 namespace project {
