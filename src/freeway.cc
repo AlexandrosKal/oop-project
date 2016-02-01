@@ -1,6 +1,6 @@
 #include "freeway.h"
 #include <cstdio>
-#include "sizetypes.h"
+#include "size_types.h"
 
 namespace project {
 

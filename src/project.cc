@@ -3,7 +3,7 @@
 #include <cstring>
 #include <ctime>
 #include "freeway.h"
-#include "sizetypes.h"
+#include "size_types.h"
 
 int main(int argc, char** argv) {
   unsigned seed = time(NULL);
