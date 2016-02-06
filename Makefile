@@ -24,7 +24,7 @@ TEST_TARGET = build/project_test.out
 # Flags passed to preprocessor, compiler and linker
 
 CPPFLAGS += -isystem $(GTEST_DIR)/include -iquoteinclude -pthread
-CXXFLAGS += -std=c++03 -pedantic -Wextra -Wall
+CXXFLAGS += -std=c++03 -pedantic-errors
 LDFLAGS += -pthread
 
 # Build targets
