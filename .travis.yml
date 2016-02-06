@@ -3,6 +3,8 @@ compiler:
   - clang
   - gcc
 script: make && make test
+matrix:
+  fast_finish: true
 notifications:
   email: false
 os:
