@@ -1,5 +1,7 @@
 language: cpp
-compiler: gcc
+compiler:
+  - clang
+  - gcc
 script: make && make test
 notifications:
   email: false
