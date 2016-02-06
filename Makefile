@@ -39,11 +39,11 @@ test : $(TEST_TARGET)
 # Builds Google Test
 
 build/gtest-all.o : $(GTEST_SRCS_)
-	$(CXX) $(CPPFLAGS) -I$(GTEST_DIR) $(CXXFLAGS) -c \
+	$(CXX) $(CPPFLAGS) -isystem $(GTEST_DIR) $(CXXFLAGS) -c \
 		$(GTEST_DIR)/src/gtest-all.cc -o $@
 
 build/gtest_main.o : $(GTEST_SRCS_)
-	$(CXX) $(CPPFLAGS) -I$(GTEST_DIR) $(CXXFLAGS) -c \
+	$(CXX) $(CPPFLAGS) -isystem $(GTEST_DIR) $(CXXFLAGS) -c \
 		$(GTEST_DIR)/src/gtest_main.cc -o $@
 
 build/gtest_main.a : build/gtest-all.o build/gtest_main.o
