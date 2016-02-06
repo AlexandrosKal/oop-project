@@ -5,5 +5,7 @@ compiler:
 script: make && make test
 notifications:
   email: false
-os: linux
+os:
+  - linux
+  - osx
 sudo: false
