@@ -1,6 +1,7 @@
 #include "segment.h"
 #include <algorithm>
 #include <cstdio>
+#include <cstdlib>
 #include "size_types.h"
 
 namespace project {
