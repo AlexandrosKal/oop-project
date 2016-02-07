@@ -6,10 +6,10 @@
 
 Method                                                                             |Description
 :----------------------------------------------------------------------------------|:----------
-`Freeway(num_segments, segment_ready_percent, segment_capacities, toll_pass_limit)`|Prints `Αυτοκινητόδρομος σε λειτουργία` and constructs its data members
-`Operate()`                                                                        |`void` Calls the `Operate()` method of each `Segment` from end to start and prints the number of `Car` on the `Freeway`
-`num_cars()`                                                                       |`size_t`
-`segments()`                                                                       |`vector<Segment*>`
+`Freeway(capacities, ready_percent, pass_limit)`|Prints `Αυτοκινητόδρομος σε λειτουργία` and constructs its data members
+`Operate()`                                     |`void` Calls the `Operate()` method of each `Segment` from end to start and prints the number of `Car` on the `Freeway`
+`num_cars()`                                    |`size_t`
+`segments()`                                    |`vector<Segment*>`
 
 ### Segment
 
@@ -19,17 +19,17 @@ Variable  |Description
 
 Method                                                                  |Description
 :-----------------------------------------------------------------------|:----------
-`Segment(capacity, prev, ready_percent, num_junctions, toll_pass_limit)`|Creates a random number of `Cars`
-`Enter()`                                                               |`void` Max possible `Cars` enter from `Tolls` and previous `Segment`. Required messages are printed
-`Exit()`                                                                |`void` `Cars` whose destination is the next junction exit the `Freeway`
-`Operate()`                                                             |`void` Calls `Exit()`, `Enter()` and randomly sets `ready_percent`% `Cars` as `ready`
-`Pass(size_t)`                                                          |`void` Max possible `Cars` exit the `Segment` and enter the next one
-`cars()`                                                                |`vector<Car*>`
-`num_cars()`                                                            |`size_t`
-`ready_cars()`                                                          |`vector<Car*>`
-`capacity()`                                                            |`size_t`
-`enter_junction()`                                                      |`size_t`
-`set_next(next)`                                                        |`void`
+`Segment(capacity, prev, ready_percent, num_junctions, pass_limit)`|Creates a random number of `Cars`
+`Enter()`                                                          |`void` Max possible `Cars` enter from `Tolls` and previous `Segment`. Required messages are printed
+`Exit()`                                                           |`void` `Cars` whose destination is the next junction exit the `Freeway`
+`Operate()`                                                        |`void` Calls `Exit()`, `Enter()` and randomly sets `ready_percent`% `Cars` as `ready`
+`Pass(size_t)`                                                     |`void` Max possible `Cars` exit the `Segment` and enter the next one
+`cars()`                                                           |`vector<Car*>`
+`num_cars()`                                                       |`size_t`
+`ready_cars()`                                                     |`vector<Car*>`
+`capacity()`                                                       |`size_t`
+`entrance()`                                                       |`size_t`
+`set_next(next)`                                                   |`void`
 
 ### Junction
 
@@ -68,7 +68,7 @@ Method                                 |Description
 Method                       |Description
 :----------------------------|:----------
 `Car(exit_junction, segment)`|`ready` becomes `false`
-`exit_junction()`            |`size_t`
+`exit()`                     |`size_t`
 `set_ready(ready)`           |`void`
 `ready()`                    |`bool`
 `set_segment(segment)`       |`void`
