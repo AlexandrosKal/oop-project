@@ -64,8 +64,9 @@ int main(int argc, char** argv) {
     scanf("%" PRIuS, &capacities[i]);
   }
 
+  printf("\n");
   project::Freeway freeway(capacities, ready_percent, pass_limit);
-  printf("Cars: %" PRIuS "\n", freeway.num_cars());
+  printf("Arithmos aftokiniton: %" PRIuS "\n", freeway.num_cars());
   for (int i = 0; i < simulation_steps; ++i) {
     printf("\nOperation: %d\n", i + 1);
     freeway.Operate();
