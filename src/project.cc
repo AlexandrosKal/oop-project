@@ -59,6 +59,7 @@ int main(int argc, char** argv) {
 
   srand(seed);
 
+  printf("Enter the capacities: ");
   std::vector<size_t> capacities(num_segments);
   for (size_t i = 0; i < capacities.size(); ++i) {
     scanf("%" PRIuS, &capacities[i]);
