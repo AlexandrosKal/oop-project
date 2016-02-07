@@ -56,14 +56,13 @@ continuous integration service.
 
 ### Tools
 
-- [Apple LLVM](https://developer.apple.com/library/mac/documentation/CompilerTools/Conceptual/LLVMCompilerOverview/)
-  7.0.2
+- [Clang](http://clang.llvm.org/) 3.7.0
 - Git 2.5.0
 - GNU Compiler Collection 5.3.1
 - GNU Make 4.0
 - Google Test
 - Travis CI
-- [Valgrind](http://valgrind.org/) 3.11
+- [Valgrind](http://valgrind.org/) 3.11.0
 
 ## Authors
 
