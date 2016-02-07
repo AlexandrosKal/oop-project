@@ -22,6 +22,7 @@ Segment::Segment(size_t capacity, Segment* prev, int ready_percent,
                   entrance_->id() + 1;
     cars_[i] = new Car(exit, NULL);
   }
+  Ready();
 }
 
 Segment::~Segment() {
@@ -70,19 +71,7 @@ void Segment::Exit() {
 void Segment::Operate() {
   Exit();
   Enter();
-
-  std::random_shuffle(cars_.begin(), cars_.end());
-  size_t num_new_ready = ready_percent_ * cars_.size() / 100;
-  size_t num_changed_cars = 0;
-  for (size_t i = 0; i < cars_.size(); ++i) {
-    if (num_changed_cars == num_new_ready) {
-      break;
-    }
-    if (!cars_[i]->ready()) {
-      cars_[i]->set_ready(true);
-      ++num_changed_cars;
-    }
-  }
+  Ready();
 }
 
 void Segment::Pass(size_t max_cars) {
@@ -128,6 +117,21 @@ size_t Segment::entrance() const {
 
 void Segment::set_next(Segment* next) {
   next_ = next;
+}
+
+void Segment::Ready() {
+  std::random_shuffle(cars_.begin(), cars_.end());
+  size_t num_new_ready = ready_percent_ * cars_.size() / 100;
+  size_t num_changed_cars = 0;
+  for (size_t i = 0; i < cars_.size(); ++i) {
+    if (num_changed_cars == num_new_ready) {
+      break;
+    }
+    if (!cars_[i]->ready()) {
+      cars_[i]->set_ready(true);
+      ++num_changed_cars;
+    }
+  }
 }
 
 }  // namespace project

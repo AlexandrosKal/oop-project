@@ -26,6 +26,8 @@ class Segment {
   void set_next(Segment* /*next*/);
 
  private:
+  void Ready();
+
   const size_t capacity_;
   std::vector<Car*> cars_;
   Junction* entrance_;
