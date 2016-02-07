@@ -18,8 +18,8 @@ Segment::Segment(size_t capacity, Segment* prev, int ready_percent,
   size_t num_cars = std::min(capacity_, rand() % kMaxCars + 1);
   cars_.resize(num_cars);
   for (size_t i = 0; i < cars_.size(); ++i) {
-    size_t exit = rand() % (num_junctions - entrance_->id()) + entrance_->id() +
-                  1;
+    size_t exit = rand() % (num_junctions - entrance_->id() - 1) +
+                  entrance_->id() + 1;
     cars_[i] = new Car(exit, NULL);
   }
 }

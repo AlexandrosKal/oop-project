@@ -49,6 +49,5 @@ int main(int argc, char** argv) {
     printf("\nOperation: %d\n", i + 1);
     freeway.Operate();
   }
-
   return 0;
 }

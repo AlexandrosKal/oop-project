@@ -92,7 +92,7 @@ void Junction::AddRandomCars(const std::vector<Toll*>& tolls) const {
   for (size_t i = 0; i < tolls.size(); ++i) {
     size_t num_cars = rand() % kMaxCarsPerToll;
     for (size_t j = 0; j < num_cars; ++j) {
-      size_t exit = rand() % (num_junctions_ - id_) + id_ + 1;
+      size_t exit = rand() % (num_junctions_ - id_ - 1) + id_ + 1;
       tolls[i]->Add(new Car(exit, NULL));
     }
   }
