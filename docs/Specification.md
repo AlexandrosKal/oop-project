@@ -78,8 +78,9 @@ Method                       |Description
 
 ## Usage
 
-The executable file, e.g. `build/project.out`, receives from the command line
-the following **case sensitive** arguments:
+The executable file, e.g. `build/project.out`, receives from the command-line
+the following **case-insensitive** arguments with single, double, or no `-`
+prefix:
 
 Argument |Description
 :--------|:----------
@@ -92,7 +93,7 @@ Argument |Description
 If any of these arguments is not provided, a default value **must** be used.
 
 During the execution, `NSegs` numbers (`size_t`) are read from the standard
-input correspoding to the `capacity` of each `Segment`.
+input corresponding to the `capacity` of each `Segment`.
 
 E.g:
 

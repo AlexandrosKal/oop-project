@@ -1,9 +1,30 @@
+#include <cctype>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
 #include <ctime>
 #include "freeway.h"
 #include "size_types.h"
+
+static bool Equals(const char* a, const char* b) {
+  if (a[0] == '-') {
+    return Equals(a + 1, b);
+  }
+  if (b[0] == '-') {
+    return Equals(a, b + 1);
+  }
+
+  size_t a_len = strlen(a);
+  if (a_len != strlen(b)) {
+    return false;
+  }
+  for (size_t i = 0; i < a_len; ++i) {
+    if (tolower(a[i]) != tolower(b[i])) {
+      return false;
+    }
+  }
+  return true;
+}
 
 int main(int argc, char** argv) {
   unsigned seed = time(NULL);
@@ -12,19 +33,19 @@ int main(int argc, char** argv) {
   size_t pass_limit = 10;
   int ready_percent = 30;
   for (int i = 1; i < argc; ++i) {
-    if (strcmp("-seed", argv[i]) == 0) {
+    if (Equals(argv[i], "seed")) {
       ++i;
       sscanf(argv[i], "%u", &seed);
-    } else if (strcmp("-N", argv[i]) == 0) {
+    } else if (Equals(argv[i], "n")) {
       ++i;
       simulation_steps = atoi(argv[i]);
-    } else if (strcmp("-NSegs", argv[i]) == 0) {
+    } else if (Equals(argv[i], "nsegs")) {
       ++i;
       sscanf(argv[i], "%" PRIuS, &num_segments);
-    } else if (strcmp("-K", argv[i]) == 0) {
+    } else if (Equals(argv[i], "k")) {
       ++i;
       sscanf(argv[i], "%" PRIuS, &pass_limit);
-    } else if (strcmp("-Percent", argv[i]) == 0) {
+    } else if (Equals(argv[i], "percent")) {
       ++i;
       ready_percent = atoi(argv[i]);
     }
