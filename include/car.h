@@ -11,7 +11,7 @@ class Car {
  public:
   Car(size_t, Segment*);
 
-  size_t exit_junction() const;
+  size_t exit() const;
 
   void set_ready(bool /*ready*/);
   bool ready() const;
@@ -20,7 +20,7 @@ class Car {
   const Segment* segment() const;
 
  private:
-  const size_t exit_junction_;
+  const size_t exit_;
   bool ready_;
   Segment* segment_;
 };

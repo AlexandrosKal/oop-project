@@ -2,12 +2,12 @@
 
 namespace project {
 
-Car::Car(size_t exit_junction, Segment* segment)
-  : exit_junction_(exit_junction), ready_(false), segment_(segment) {
+Car::Car(size_t exit, Segment* segment)
+  : exit_(exit), ready_(false), segment_(segment) {
 }
 
-size_t Car::exit_junction() const {
-  return exit_junction_;
+size_t Car::exit() const {
+  return exit_;
 }
 
 void Car::set_ready(bool ready) {

@@ -25,7 +25,7 @@ TEST(SegmentTest, RemovesCarsFromFreeway) {
 
   size_t ready_to_exit = 0;
   for (size_t i = 0; i < ready_cars.size(); ++i) {
-    if (ready_cars[i]->exit_junction() == segment.enter_junction() + 1) {
+    if (ready_cars[i]->exit() == segment.entrance() + 1) {
       ++ready_to_exit;
     }
   }
@@ -53,7 +53,7 @@ TEST(SegmentTest, PassesReadyCars) {
   std::vector<Car*> ready_cars = segment.ready_cars();
   size_t ready_to_pass = 0;
   for (size_t i = 0; i < ready_cars.size(); ++i) {
-    if (ready_cars[i]->exit_junction() != segment.enter_junction() + 1) {
+    if (ready_cars[i]->exit() != segment.entrance() + 1) {
         ++ready_to_pass;
     }
   }
@@ -70,7 +70,7 @@ TEST(SegmentTest, CreatesCarsWithGreaterExitJunction) {
   Segment segment(10, NULL, 50, 100, 5);
   std::vector<Car*> cars = segment.cars();
   for (size_t i = 0; i < cars.size(); ++i) {
-    ASSERT_GT(cars[i]->exit_junction(), segment.enter_junction());
+    ASSERT_GT(cars[i]->exit(), segment.entrance());
   }
 }
 
@@ -93,9 +93,9 @@ TEST(SegmentTest, ReturnsEnterJunction) {
   Segment segment0(10, NULL, 50, 100, 5);
   Segment segment1(10, NULL, 50, 100, 5);
   Segment segment2(10, NULL, 50, 100, 5);
-  ASSERT_GE(segment0.enter_junction(), 0);
-  ASSERT_EQ(segment1.enter_junction(), segment0.enter_junction() + 1);
-  ASSERT_EQ(segment2.enter_junction(), segment0.enter_junction() + 2);
+  ASSERT_GE(segment0.entrance(), 0);
+  ASSERT_EQ(segment1.entrance(), segment0.entrance() + 1);
+  ASSERT_EQ(segment2.entrance(), segment0.entrance() + 2);
 }
 
 }  // namespace project

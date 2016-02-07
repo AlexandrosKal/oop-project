@@ -4,21 +4,19 @@
 
 namespace project {
 
-Freeway::Freeway(size_t num_segments,  size_t segment_ready_percent,
-                 const size_t* segment_capacities, size_t toll_pass_limit) {
+Freeway::Freeway(const std::vector<size_t>& capacities, int ready_percent,
+                 size_t pass_limit) {
   num_cars_ = 0;
   size_t current_id = Junction::current_id();
-  segments_.resize(num_segments);
+  segments_.resize(capacities.size());
   for (size_t i = 0; i < segments_.size(); ++i) {
     Segment* prev = NULL;
     if (i >= 1) {
       prev = segments_[i - 1];
     }
 
-    segments_[i] = new Segment(segment_capacities[i], prev,
-                               segment_ready_percent,
-                               current_id + num_segments + 1,
-                               toll_pass_limit);
+    segments_[i] = new Segment(capacities[i], prev, ready_percent,
+                               current_id + segments_.size() + 1, pass_limit);
     if (i >= 1) {
       prev->set_next(segments_[i]);
     }
@@ -35,9 +33,10 @@ Freeway::~Freeway() {
 
 void Freeway::Operate() {
   num_cars_ = 0;
-  for (int i = segments_.size() - 1; i >= 0; --i) {
-    segments_[i]->Operate();
-    num_cars_ += segments_[i]->num_cars();
+  for (std::vector<Segment*>::reverse_iterator it = segments_.rbegin();
+       it != segments_.rend(); ++it) {
+    (*it)->Operate();
+    num_cars_ += (*it)->num_cars();
   }
   printf("Arithmos aftokiniton: %" PRIuS "\n", num_cars_);
 }

@@ -24,7 +24,7 @@ class Junction {
 
  private:
   void AddRandomCars(const std::vector<Toll*>&) const;
-  size_t CountCars(const std::vector<Toll*>&) const;
+  size_t NumCars(const std::vector<Toll*>&) const;
   std::vector<Car*> RemoveCars(const std::vector<Toll*>&, size_t) const;
 
   static size_t current_id_;

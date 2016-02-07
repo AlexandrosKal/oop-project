@@ -9,8 +9,8 @@ int main(int argc, char** argv) {
   unsigned seed = time(NULL);
   int simulation_steps = 10;
   size_t num_segments = 5;
-  size_t toll_pass_limit = 10;
-  int segment_ready_percent = 30;
+  size_t pass_limit = 10;
+  int ready_percent = 30;
   for (int i = 1; i < argc; ++i) {
     if (strcmp("-seed", argv[i]) == 0) {
       ++i;
@@ -23,10 +23,10 @@ int main(int argc, char** argv) {
       sscanf(argv[i], "%" PRIuS, &num_segments);
     } else if (strcmp("-K", argv[i]) == 0) {
       ++i;
-      sscanf(argv[i], "%" PRIuS, &toll_pass_limit);
+      sscanf(argv[i], "%" PRIuS, &pass_limit);
     } else if (strcmp("-Percent", argv[i]) == 0) {
       ++i;
-      segment_ready_percent = atoi(argv[i]);
+      ready_percent = atoi(argv[i]);
     }
   }
   printf("Seed: %u\n"
@@ -34,22 +34,19 @@ int main(int argc, char** argv) {
          "NSegs: %" PRIuS "\n"
          "K: %" PRIuS "\n"
          "Percent: %d\n",
-         seed, simulation_steps, num_segments, toll_pass_limit,
-         segment_ready_percent);
+         seed, simulation_steps, num_segments, pass_limit, ready_percent);
 
-  size_t* segment_capacities = new size_t[num_segments];
-  for (size_t i = 0; i < num_segments; ++i) {
-    scanf("%" PRIuS, segment_capacities + i);
+  std::vector<size_t> capacities(num_segments);
+  for (size_t i = 0; i < capacities.size(); ++i) {
+    scanf("%" PRIuS, &capacities[i]);
   }
 
-  project::Freeway freeway(num_segments, segment_ready_percent,
-                           segment_capacities, toll_pass_limit);
+  project::Freeway freeway(capacities, ready_percent, pass_limit);
   printf("Cars: %" PRIuS "\n", freeway.num_cars());
   for (int i = 0; i < simulation_steps; ++i) {
     printf("\nOperation: %d\n", i + 1);
     freeway.Operate();
   }
 
-  delete[] segment_capacities;
   return 0;
 }

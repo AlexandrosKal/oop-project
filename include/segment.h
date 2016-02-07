@@ -22,13 +22,13 @@ class Segment {
   size_t num_cars() const;
   const std::vector<Car*> ready_cars() const;
   size_t capacity() const;
-  size_t enter_junction() const;
+  size_t entrance() const;
   void set_next(Segment* /*next*/);
 
  private:
   const size_t capacity_;
   std::vector<Car*> cars_;
-  Junction* enter_junction_;
+  Junction* entrance_;
   Segment* next_;
   Segment* prev_;
   const int ready_percent_;

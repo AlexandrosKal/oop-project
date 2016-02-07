@@ -37,7 +37,7 @@ TEST(TollTest, RemovesSomeCars) {
 
 TEST(TollTest, HandlesOverflowRemoval) {
   Toll toll(5, 10);
-  int num_cars = toll.num_cars();
+  size_t num_cars = toll.num_cars();
 
   std::vector<Car*> cars = toll.Remove(num_cars + 10);
   ASSERT_LE(cars.size(), num_cars);
@@ -62,7 +62,7 @@ TEST(TollTest, CreatesCarsWithGreaterExitJunction) {
   Toll toll(5, 10);
   std::vector<Car*> cars = toll.cars();
   for (size_t i = 0; i < cars.size(); ++i) {
-    ASSERT_GT(cars[i]->exit_junction(), 5);
+    ASSERT_GT(cars[i]->exit(), 5);
   }
 }
 

@@ -7,7 +7,7 @@ TEST(JunctionTest, CreatesCarsWithGreaterExitJunction) {
   Junction junction(100, 5);
   std::vector<Car*> cars = junction.Cars();
   for (size_t i = 0; i < cars.size(); ++i) {
-    ASSERT_GT(cars[i]->exit_junction(), junction.id());
+    ASSERT_GT(cars[i]->exit(), junction.id());
   }
 }
 

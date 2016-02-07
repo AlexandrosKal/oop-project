@@ -45,16 +45,16 @@ const std::vector<Car*> Junction::Cars() const {
 }
 
 size_t Junction::NumCars() const {
-  return CountCars(manned_tolls_) + CountCars(electronic_tolls_);
+  return NumCars(manned_tolls_) + NumCars(electronic_tolls_);
 }
 
-std::vector<Car*> Junction::Operate(size_t max_allowed_cars) {
-  size_t manned_cars = std::min(pass_limit_, CountCars(manned_tolls_));
+std::vector<Car*> Junction::Operate(size_t max_cars) {
+  size_t manned_cars = std::min(pass_limit_, NumCars(manned_tolls_));
   size_t electronic_cars = std::min(2 * pass_limit_,
-                                    CountCars(electronic_tolls_));
+                                    NumCars(electronic_tolls_));
 
   std::vector<Car*> manned_ret, electronic_ret;
-  if (manned_cars + electronic_cars <= max_allowed_cars) {
+  if (manned_cars + electronic_cars <= max_cars) {
     manned_ret = RemoveCars(manned_tolls_, manned_cars);
     electronic_ret = RemoveCars(electronic_tolls_, electronic_cars);
 
@@ -62,10 +62,10 @@ std::vector<Car*> Junction::Operate(size_t max_allowed_cars) {
       ++pass_limit_;
     }
   } else {
-    size_t allowed_cars = std::min(manned_cars, max_allowed_cars);
+    size_t allowed_cars = std::min(manned_cars, max_cars);
     manned_ret = RemoveCars(manned_tolls_, allowed_cars);
     electronic_ret = RemoveCars(electronic_tolls_,
-                                max_allowed_cars - manned_ret.size());
+                                max_cars - manned_ret.size());
     --pass_limit_;
   }
   std::vector<Car*> ret = manned_ret;
@@ -90,15 +90,15 @@ size_t Junction::pass_limit() const {
 
 void Junction::AddRandomCars(const std::vector<Toll*>& tolls) const {
   for (size_t i = 0; i < tolls.size(); ++i) {
-    size_t toll_num_cars = rand() % kMaxCarsPerToll;
-    for (size_t j = 0; j < toll_num_cars; ++j) {
-      size_t exit_junction = rand() % (num_junctions_ - id_) + id_ + 1;
-      tolls[i]->Add(new Car(exit_junction, NULL));
+    size_t num_cars = rand() % kMaxCarsPerToll;
+    for (size_t j = 0; j < num_cars; ++j) {
+      size_t exit = rand() % (num_junctions_ - id_) + id_ + 1;
+      tolls[i]->Add(new Car(exit, NULL));
     }
   }
 }
 
-size_t Junction::CountCars(const std::vector<Toll*>& tolls) const {
+size_t Junction::NumCars(const std::vector<Toll*>& tolls) const {
   size_t ret = 0;
   for (size_t i = 0; i < tolls.size(); ++i) {
     ret += tolls[i]->num_cars();
