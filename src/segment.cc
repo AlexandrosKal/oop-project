@@ -49,8 +49,7 @@ void Segment::Enter() {
            entrance_->id());
 
     if (num_passed_cars < ready_cars_before_pass) {
-      printf("Kathysteriseis meta ton komvo %" PRIuS "\n",
-             entrance_->id());
+      printf("Kathysteriseis meta ton komvo %" PRIuS "\n", entrance_->id());
     }
   } else {
     printf("Tireite tis apostaseis asfaleias sto tmima meta ton komvo %" PRIuS
