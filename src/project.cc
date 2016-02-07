@@ -36,6 +36,8 @@ int main(int argc, char** argv) {
          "Percent: %d\n",
          seed, simulation_steps, num_segments, pass_limit, ready_percent);
 
+  srand(seed);
+
   std::vector<size_t> capacities(num_segments);
   for (size_t i = 0; i < capacities.size(); ++i) {
     scanf("%" PRIuS, &capacities[i]);
