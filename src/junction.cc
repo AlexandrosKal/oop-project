@@ -30,7 +30,6 @@ Junction::~Junction() {
   }
 }
 
-
 const std::vector<Car*> Junction::Cars() const {
   std::vector<Car*> ret, temp;
   for (size_t i = 0; i < manned_tolls_.size(); ++i) {
