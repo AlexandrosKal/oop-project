@@ -98,8 +98,13 @@ input corresponding to the `capacity` of each `Segment`.
 E.g:
 
 ```sh
-~/cs/oop-project $ ./build/project.out -N 30 -NSegs 5 -K 3 -Percent 30
-50 100 60 60 70
+oop-project git:master ❯ ./build/project.out -n 10 -nsegs 5 -k 10 -percent 30
+Seed: 1454857303
+N: 10
+NSegs: 5
+K: 10
+Percent: 30
+Enter the capacities: 10 15 5 12 17
 ```
 
 An instance of `Freeway` should be constructed given the above data and then the
