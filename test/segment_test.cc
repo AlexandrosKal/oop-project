@@ -14,6 +14,7 @@ TEST(SegmentTest, CreatesRandomCars) {
 TEST(SegmentTest, EntersLessOrEqualToCapacity) {
   Segment prev_segment(10, NULL, 50, 100, 5);
   Segment segment(10, &prev_segment, 50, 100, 5);
+  prev_segment.set_next(&segment);
   segment.Enter();
   ASSERT_LE(segment.num_cars(), 10);
 }
