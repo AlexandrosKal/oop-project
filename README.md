@@ -18,6 +18,7 @@ make test  # Optional: Executes the unit tests
 
 ```sh
 ./build/project.out
+./build/project.out -seed 1454857303 -n 10 -nsegs 5 -k 10 -percent 30
 ./build/project_test.out  # Optional: Executed by `make test`
 ```
 
