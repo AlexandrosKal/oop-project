@@ -4,8 +4,8 @@
 
 ### Freeway
 
-Method                                                                             |Description
-:----------------------------------------------------------------------------------|:----------
+Method                                          |Description
+:-----------------------------------------------|:----------
 `Freeway(capacities, ready_percent, pass_limit)`|Prints `Αυτοκινητόδρομος σε λειτουργία` and constructs its data members
 `Operate()`                                     |`void` Calls the `Operate()` method of each `Segment` from end to start and prints the number of `Car` on the `Freeway`
 `num_cars()`                                    |`size_t`
@@ -17,8 +17,8 @@ Variable  |Description
 :---------|:----------
 `kMaxCars`|`size_t` Max number of `Cars` generated in each `Segment` `>= 1`
 
-Method                                                                  |Description
-:-----------------------------------------------------------------------|:----------
+Method                                                             |Description
+:------------------------------------------------------------------|:----------
 `Segment(capacity, prev, ready_percent, num_junctions, pass_limit)`|Creates a random number of `Cars`
 `Enter()`                                                          |`void` Max possible `Cars` enter from `Tolls` and previous `Segment`. Required messages are printed
 `Exit()`                                                           |`void` `Cars` whose destination is the next junction exit the `Freeway`
