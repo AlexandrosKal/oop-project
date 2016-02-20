@@ -28,8 +28,10 @@ Method                                                             |Description
 `num_cars()`                                                       |`size_t`
 `ready_cars()`                                                     |`vector<Car*>`
 `capacity()`                                                       |`size_t`
-`entrance()`                                                       |`size_t`
-`set_next(next)`                                                   |`void`
+`entrance()`                                                       |`size_t` Returns the id
+`set_exit(exit)`                                                   |`void`
+`exit()`                                                           |`size_t` Returns the id
+`set_next(next)`                                                   |`void` Also sets exit
 
 ### Junction
 
@@ -40,12 +42,15 @@ Variable          |Description
 
 Method                               |Description
 :------------------------------------|:----------
+`Junction()`                         |Creates empty junction with correct id
 `Junction(num_junctions, pass_limit)`|Creates a random number of `Tolls`
 `Cars()`                             |`vector<Car*>`
 `NumCars()`                          |`size_t`
 `Operate(max_allowed_cars)`          |`vector<Car*>` Returns max `Cars` respecting the `Segment.capacity()` and the `pass_limit`. If less than `3 * pass_limit` `Cars` are allowed to enter, the `pass_limit` is decreased. If `3 * pass_limit` `Cars` enter, then the `pass_limit` is increased. Finally, new `Cars` are added in each `Toll`
 `current_id()`                       |`static size_t` Total number of `Junctions` initialized at `0`
+`num_electronic()`                   |`size_t` Returns electronic tolls number
 `id()`                               |`size_t`
+`num_manned()`                       |`size_t` Returns manned tolls number
 `pass_limit()`                       |`size_t`
 
 ### Toll
@@ -68,7 +73,7 @@ Method                                 |Description
 Method                       |Description
 :----------------------------|:----------
 `Car(exit_junction, segment)`|`ready` becomes `false`
-`exit()`                     |`size_t`
+`exit()`                     |`size_t` Returns the id
 `set_ready(ready)`           |`void`
 `ready()`                    |`bool`
 `set_segment(segment)`       |`void`
