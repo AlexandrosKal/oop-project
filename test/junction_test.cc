@@ -11,7 +11,7 @@ TEST(JunctionTest, CreatesTolls) {
   ASSERT_LE(junction.num_electronic(), Junction::kMaxTollsPerType);
 }
 
-TEST(JunctionTest, CreatesCarsWithGreaterExitJunction) {
+TEST(JunctionTest, CreatesCarsWithGreaterExit) {
   Junction junction(100, 5);
   std::vector<Car*> cars = junction.Cars();
   for (size_t i = 0; i < cars.size(); ++i) {

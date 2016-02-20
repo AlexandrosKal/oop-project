@@ -8,7 +8,7 @@ TEST(SegmentTest, CreatesRandomCars) {
   ASSERT_GE(segment.num_cars(), 1);
   ASSERT_LE(segment.num_cars(), Segment::kMaxCars);
   ASSERT_LE(segment.num_cars(), 10);
-  ASSERT_LE(segment.ready_cars().size(), 50 * segment.num_cars() / 100);
+  ASSERT_EQ(segment.ready_cars().size(), 50 * segment.num_cars() / 100);
 }
 
 TEST(SegmentTest, EntersLessOrEqualToCapacity) {
@@ -42,7 +42,7 @@ TEST(SegmentTest, Operates) {
   std::vector<Car*> ready_cars = segment.ready_cars();
 
   ASSERT_GE(ready_cars.size(), prev_ready_cars.size());
-  ASSERT_LE(ready_cars.size() - prev_ready_cars.size(),
+  ASSERT_EQ(ready_cars.size() - prev_ready_cars.size(),
             50 * segment.num_cars() / 100);
   const std::vector<Car*>& cars_after_operation = segment.cars();
   for (size_t i = 0; i < cars_after_operation.size(); ++i) {
@@ -59,19 +59,20 @@ TEST(SegmentTest, PassesReadyCars) {
   size_t ready_to_pass = 0;
   for (size_t i = 0; i < ready_cars.size(); ++i) {
     if (ready_cars[i]->exit() != segment.entrance() + 1) {
-        ++ready_to_pass;
+      ++ready_to_pass;
     }
   }
 
   size_t num_before_pass = segment.num_cars();
   segment.Pass(5);
-  ASSERT_GE(static_cast<int>(segment.num_cars()),
-            static_cast<int>(num_before_pass) - 5);
+  if (num_before_pass >= 5) {
+    ASSERT_GE(segment.num_cars(), num_before_pass - 5);
+  }
   ASSERT_GE(segment.num_cars(), num_before_pass - ready_to_pass);
   ASSERT_LE(next_segment.num_cars(), 10);
 }
 
-TEST(SegmentTest, CreatesCarsWithGreaterExitJunction) {
+TEST(SegmentTest, CreatesCarsWithGreaterExit) {
   Segment segment(10, NULL, 50, 100, 5);
   std::vector<Car*> cars = segment.cars();
   for (size_t i = 0; i < cars.size(); ++i) {
@@ -94,7 +95,7 @@ TEST(SegmentTest, ReturnsCapacity) {
   ASSERT_EQ(segment.capacity(), 10);
 }
 
-TEST(SegmentTest, ReturnsEnterJunction) {
+TEST(SegmentTest, ReturnsEntrance) {
   Segment segment0(10, NULL, 50, 100, 5);
   Segment segment1(10, NULL, 50, 100, 5);
   Segment segment2(10, NULL, 50, 100, 5);
