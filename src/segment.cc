@@ -73,12 +73,11 @@ void Segment::Operate() {
   Enter();
   Ready();
   for (std::vector<Car*>::reverse_iterator it = cars_.rbegin();
-       it != cars_.rend(); ++it ) {
-    if ((*it)->segment() != this) {
-      (*it)->set_segment(this);
-    } else {
+       it != cars_.rend(); ++it) {
+    if ((*it)->segment() = this) {
       break;
     }
+    (*it)->set_segment(this);
   }
 }
 
