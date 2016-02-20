@@ -11,15 +11,18 @@ class Junction {
   static const size_t kMaxTollsPerType;
   static const size_t kMaxCarsPerToll;
 
+  Junction();
   Junction(size_t, size_t);
   ~Junction();
 
-  std::vector<Car*> Operate(size_t);
   const std::vector<Car*> Cars() const;
   size_t NumCars() const;
+  std::vector<Car*> Operate(size_t);
 
   static size_t current_id();
+  size_t num_electronic() const;
   size_t id() const;
+  size_t num_manned() const;
   size_t pass_limit() const;
 
  private:
@@ -28,9 +31,9 @@ class Junction {
   std::vector<Car*> RemoveCars(const std::vector<Toll*>&, size_t) const;
 
   static size_t current_id_;
-  std::vector<Toll*> electronic_tolls_;
+  std::vector<Toll*> electronic_;
   const size_t id_;
-  std::vector<Toll*> manned_tolls_;
+  std::vector<Toll*> manned_;
   const size_t num_junctions_;
   size_t pass_limit_;
 };

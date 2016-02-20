@@ -3,6 +3,14 @@
 
 namespace project {
 
+TEST(JunctionTest, CreatesTolls) {
+  Junction junction(100, 5);
+  ASSERT_GE(junction.num_manned(), 1);
+  ASSERT_LE(junction.num_manned(), Junction::kMaxTollsPerType);
+  ASSERT_GE(junction.num_electronic(), 1);
+  ASSERT_LE(junction.num_electronic(), Junction::kMaxTollsPerType);
+}
+
 TEST(JunctionTest, CreatesCarsWithGreaterExitJunction) {
   Junction junction(100, 5);
   std::vector<Car*> cars = junction.Cars();
@@ -37,12 +45,13 @@ TEST(JunctionTest, HandlesPositiveCarsOperation) {
 }
 
 TEST(JunctionTest, IncreasesIdByOne) {
-  Junction junction0(100, 5);
+  Junction junction0;
   Junction junction1(100, 5);
   Junction junction2(100, 5);
   ASSERT_GE(junction0.id(), 0);
   ASSERT_EQ(junction1.id(), junction0.id() + 1);
   ASSERT_EQ(junction2.id(), junction0.id() + 2);
+  ASSERT_EQ(Junction::current_id(), junction2.id() + 1);
 }
 
 TEST(JunctionTest, ReturnsPassLimit) {
