@@ -44,6 +44,10 @@ TEST(SegmentTest, Operates) {
   ASSERT_GE(ready_cars.size(), prev_ready_cars.size());
   ASSERT_LE(ready_cars.size() - prev_ready_cars.size(),
             50 * segment.num_cars() / 100);
+  std::vector<Car*> cars_after_operation = segment.cars();
+  for (size_t i = 0; i < cars_after_operation.size(); ++i) {
+    ASSERT_EQ(cars_after_operation[i]->segment(), &segment);
+  }
 }
 
 TEST(SegmentTest, PassesReadyCars) {
