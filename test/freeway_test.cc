@@ -12,7 +12,7 @@ const std::vector<size_t> kCapacities(10, 5);
 TEST(FreewayTest, CorrectlyAssignsJunctionId) {
   size_t current_id = Junction::current_id();
   Freeway freeway(kCapacities, 50, 5);
-  std::vector<Segment*> segments = freeway.segments();
+  const std::vector<Segment*>& segments = freeway.segments();
   for (size_t i = 0; i < segments.size(); ++i) {
     ASSERT_EQ(segments[i]->entrance(), current_id + i);
   }
@@ -25,7 +25,7 @@ TEST(FreewayTest, CreatesCorrectNumberSegments) {
 
 TEST(FreewayTest, CreatesSegmentsWithCorrectCapacity) {
   Freeway freeway(kCapacities, 50, 5);
-  std::vector<Segment*> segments = freeway.segments();
+  const std::vector<Segment*>& segments = freeway.segments();
   for (size_t i = 0; i < segments.size(); ++i) {
     ASSERT_EQ(segments[i]->capacity(), kCapacities[i]);
   }
@@ -33,7 +33,7 @@ TEST(FreewayTest, CreatesSegmentsWithCorrectCapacity) {
 
 TEST(FreewayTest, UpdatesNumCarsAfterOperate) {
   Freeway freeway(kCapacities, 50, 5);
-  std::vector<Segment*> segments = freeway.segments();
+  const std::vector<Segment*>& segments = freeway.segments();
   size_t cars = 0;
   for (size_t i = 0; i < segments.size(); ++i) {
     cars +=  segments[i]->num_cars();
