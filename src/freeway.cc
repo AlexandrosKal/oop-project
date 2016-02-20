@@ -22,6 +22,7 @@ Freeway::Freeway(const std::vector<size_t>& capacities, int ready_percent,
     }
     num_cars_ += segments_[i]->num_cars();
   }
+  segments_[segments_.size() - 1]->set_exit(new Junction);
   printf("Aftokinitodromos se leitourgia\n");
 }
 

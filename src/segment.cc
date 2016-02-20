@@ -61,7 +61,7 @@ void Segment::Enter() {
 
 void Segment::Exit() {
   for (size_t i = 0; i < cars_.size(); ++i) {
-    if (cars_[i]->ready() && cars_[i]->exit() == entrance_->id() + 1) {
+    if (cars_[i]->ready() && cars_[i]->exit() == exit_->id()) {
       delete cars_[i];
       cars_.erase(cars_.begin() + i);
     }
@@ -87,7 +87,7 @@ void Segment::Pass(size_t max_cars) {
     if (passed_cars == max_cars) {
       break;
     }
-    if (cars_[i]->ready() && cars_[i]->exit() != entrance_->id() + 1) {
+    if (cars_[i]->ready() && cars_[i]->exit() != exit_->id()) {
       cars_[i]->set_ready(false);
       next_->cars_.push_back(cars_[i]);
       cars_.erase(cars_.begin() + i);
@@ -122,8 +122,17 @@ size_t Segment::entrance() const {
   return entrance_->id();
 }
 
+void Segment::set_exit(Junction* exit) {
+  exit_ = exit;
+}
+
+size_t Segment::exit() const {
+  return exit_->id();
+}
+
 void Segment::set_next(Segment* next) {
   next_ = next;
+  set_exit(next_->entrance_);
 }
 
 void Segment::Ready() {

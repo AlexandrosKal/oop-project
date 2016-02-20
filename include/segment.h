@@ -23,6 +23,8 @@ class Segment {
   const std::vector<Car*> ready_cars() const;
   size_t capacity() const;
   size_t entrance() const;
+  void set_exit(Junction* /*exit*/);
+  size_t exit() const;
   void set_next(Segment* /*next*/);
 
  private:
@@ -31,6 +33,7 @@ class Segment {
   const size_t capacity_;
   std::vector<Car*> cars_;
   Junction* entrance_;
+  Junction* exit_;
   Segment* next_;
   Segment* prev_;
   const int ready_percent_;
