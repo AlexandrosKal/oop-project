@@ -64,6 +64,7 @@ void Segment::Exit() {
     if (cars_[i]->ready() && cars_[i]->exit() == exit_->id()) {
       delete cars_[i];
       cars_.erase(cars_.begin() + i);
+      --i;
     }
   }
 }
@@ -71,7 +72,6 @@ void Segment::Exit() {
 void Segment::Operate() {
   Exit();
   Enter();
-  Ready();
   for (std::vector<Car*>::reverse_iterator it = cars_.rbegin();
        it != cars_.rend(); ++it) {
     if ((*it)->segment() == this) {
@@ -79,6 +79,7 @@ void Segment::Operate() {
     }
     (*it)->set_segment(this);
   }
+  Ready();
 }
 
 void Segment::Pass(size_t max_cars) {
@@ -91,6 +92,7 @@ void Segment::Pass(size_t max_cars) {
       cars_[i]->set_ready(false);
       next_->cars_.push_back(cars_[i]);
       cars_.erase(cars_.begin() + i);
+      --i;
       ++passed_cars;
     }
   }
