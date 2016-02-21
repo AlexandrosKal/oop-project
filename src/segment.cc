@@ -126,8 +126,8 @@ void Segment::set_exit(Junction* exit) {
   exit_ = exit;
 }
 
-size_t Segment::exit() const {
-  return exit_->id();
+const Junction* Segment::exit() const {
+  return exit_;
 }
 
 void Segment::set_next(Segment* next) {

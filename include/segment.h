@@ -24,7 +24,7 @@ class Segment {
   size_t capacity() const;
   size_t entrance() const;
   void set_exit(Junction* /*exit*/);
-  size_t exit() const;
+  const Junction* exit() const;
   void set_next(Segment* /*next*/);
 
  private:

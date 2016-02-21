@@ -27,6 +27,9 @@ Freeway::Freeway(const std::vector<size_t>& capacities, int ready_percent,
 }
 
 Freeway::~Freeway() {
+  if (!segments_.empty()) {
+    delete segments_[segments_.size() - 1]->exit();
+  }
   for (size_t i = 0; i < segments_.size(); ++i) {
     delete segments_[i];
   }
