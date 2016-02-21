@@ -9,6 +9,10 @@ TEST(SegmentTest, CreatesRandomCars) {
   ASSERT_LE(segment.num_cars(), Segment::kMaxCars);
   ASSERT_LE(segment.num_cars(), 10);
   ASSERT_EQ(segment.ready_cars().size(), 50 * segment.num_cars() / 100);
+  const std::vector<Car*>& cars = segment.cars();
+  for (size_t i = 0; i < cars.size(); ++i) {
+    ASSERT_EQ(cars[i]->segment(), &segment);
+  }
 }
 
 TEST(SegmentTest, EntersLessOrEqualToCapacity) {
