@@ -30,7 +30,7 @@ Method                                                             |Description
 `capacity()`                                                       |`size_t`
 `entrance()`                                                       |`size_t` Returns the id
 `set_exit(exit)`                                                   |`void`
-`exit()`                                                           |`size_t` Returns the id
+`exit()`                                                           |`Junction*`
 `set_next(next)`                                                   |`void` Also sets exit
 
 ### Junction
