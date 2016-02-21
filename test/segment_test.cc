@@ -38,9 +38,11 @@ TEST(SegmentTest, RemovesCarsFromFreeway) {
 }
 
 TEST(SegmentTest, Operates) {
-  Segment segment(10, NULL, 50, 100, 5);
+  Segment prev_segment(10, NULL, 50, 100, 5);
+  Segment segment(10, &prev_segment, 50, 100, 5);
   Junction junction;
   segment.set_exit(&junction);
+  prev_segment.set_next(&segment);
   std::vector<Car*> prev_ready_cars = segment.ready_cars();
   segment.Operate();
   std::vector<Car*> ready_cars = segment.ready_cars();
