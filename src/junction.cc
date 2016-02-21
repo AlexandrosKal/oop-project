@@ -6,7 +6,7 @@ namespace project {
 const size_t Junction::kMaxTollsPerType = 3;
 const size_t Junction::kMaxCarsPerToll = 2;
 
-Junction::Junction() : id_(current_id_++), num_junctions_(0) {
+Junction::Junction() : id_(current_id_++), num_junctions_(0), pass_limit_(0) {
 }
 
 Junction::Junction(size_t num_junctions, size_t pass_limit)
