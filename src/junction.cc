@@ -34,13 +34,13 @@ Junction::~Junction() {
 }
 
 const std::vector<Car*> Junction::Cars() const {
-  std::vector<Car*> ret, temp;
+  std::vector<Car*> ret;
   for (size_t i = 0; i < manned_.size(); ++i) {
-    temp = manned_[i]->cars();
+    const std::vector<Car*>& temp = manned_[i]->cars();
     ret.insert(ret.end(), temp.begin(), temp.end());
   }
   for (size_t i = 0; i < electronic_.size(); ++i) {
-    temp = electronic_[i]->cars();
+    const std::vector<Car*>& temp = electronic_[i]->cars();
     ret.insert(ret.end(), temp.begin(), temp.end());
   }
   return ret;

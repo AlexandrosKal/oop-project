@@ -76,7 +76,7 @@ TEST(SegmentTest, PassesReadyCars) {
 TEST(SegmentTest, CreatesCarsWithGreaterExit) {
   Segment segment(10, NULL, 50, 100, 5);
   segment.set_exit(new Junction);
-  std::vector<Car*> cars = segment.cars();
+  const std::vector<Car*>& cars = segment.cars();
   for (size_t i = 0; i < cars.size(); ++i) {
     ASSERT_GE(cars[i]->exit(), segment.exit());
   }
