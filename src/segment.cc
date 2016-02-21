@@ -20,7 +20,7 @@ Segment::Segment(size_t capacity, Segment* prev, int ready_percent,
   for (size_t i = 0; i < cars_.size(); ++i) {
     size_t exit = rand() % (num_junctions - entrance_->id() - 1) +
                   entrance_->id() + 1;
-    cars_[i] = new Car(exit, NULL);
+    cars_[i] = new Car(exit, this);
   }
   Ready();
 }
