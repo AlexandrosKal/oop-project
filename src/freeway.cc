@@ -5,8 +5,7 @@
 namespace project {
 
 Freeway::Freeway(const std::vector<size_t>& capacities, int ready_percent,
-                 size_t pass_limit) {
-  num_cars_ = 0;
+                 size_t pass_limit) : num_cars_(0) {
   size_t current_id = Junction::current_id();
   segments_.resize(capacities.size());
   for (size_t i = 0; i < segments_.size(); ++i) {
@@ -14,7 +13,6 @@ Freeway::Freeway(const std::vector<size_t>& capacities, int ready_percent,
     if (i >= 1) {
       prev = segments_[i - 1];
     }
-
     segments_[i] = new Segment(capacities[i], prev, ready_percent,
                                current_id + segments_.size() + 1, pass_limit);
     if (i >= 1) {
@@ -22,7 +20,9 @@ Freeway::Freeway(const std::vector<size_t>& capacities, int ready_percent,
     }
     num_cars_ += segments_[i]->num_cars();
   }
-  segments_[segments_.size() - 1]->set_exit(new Junction);
+  if (!segments_.empty()) {
+    segments_[segments_.size() - 1]->set_exit(new Junction);
+  }
   printf("Aftokinitodromos se leitourgia\n");
 }
 
