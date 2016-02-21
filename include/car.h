@@ -22,7 +22,7 @@ class Car {
  private:
   const size_t exit_;
   bool ready_;
-  Segment* segment_;
+  const Segment* segment_;
 };
 
 }  // namespace project

@@ -33,7 +33,7 @@ class Segment {
   const size_t capacity_;
   std::vector<Car*> cars_;
   Junction* entrance_;
-  Junction* exit_;
+  const Junction* exit_;
   Segment* next_;
   Segment* prev_;
   const int ready_percent_;
