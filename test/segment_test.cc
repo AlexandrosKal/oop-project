@@ -21,13 +21,14 @@ TEST(SegmentTest, EntersLessOrEqualToCapacity) {
 
 TEST(SegmentTest, RemovesCarsFromFreeway) {
   Segment segment(10, NULL, 50, 100, 5);
-  segment.set_exit(new Junction);
+  Junction junction;
+  segment.set_exit(&junction);
   std::vector<Car*> ready_cars = segment.ready_cars();
   size_t num_before_exit = segment.num_cars();
 
   size_t ready_to_exit = 0;
   for (size_t i = 0; i < ready_cars.size(); ++i) {
-    if (ready_cars[i]->exit() == segment.exit()) {
+    if (ready_cars[i]->exit() == segment.exit()->id()) {
       ++ready_to_exit;
     }
   }
@@ -38,6 +39,8 @@ TEST(SegmentTest, RemovesCarsFromFreeway) {
 
 TEST(SegmentTest, Operates) {
   Segment segment(10, NULL, 50, 100, 5);
+  Junction junction;
+  segment.set_exit(&junction);
   std::vector<Car*> prev_ready_cars = segment.ready_cars();
   segment.Operate();
   std::vector<Car*> ready_cars = segment.ready_cars();
@@ -59,7 +62,7 @@ TEST(SegmentTest, PassesReadyCars) {
   std::vector<Car*> ready_cars = segment.ready_cars();
   size_t ready_to_pass = 0;
   for (size_t i = 0; i < ready_cars.size(); ++i) {
-    if (ready_cars[i]->exit() != segment.exit()) {
+    if (ready_cars[i]->exit() != segment.exit()->id()) {
       ++ready_to_pass;
     }
   }
@@ -75,10 +78,11 @@ TEST(SegmentTest, PassesReadyCars) {
 
 TEST(SegmentTest, CreatesCarsWithGreaterExit) {
   Segment segment(10, NULL, 50, 100, 5);
-  segment.set_exit(new Junction);
+  Junction junction;
+  segment.set_exit(&junction);
   const std::vector<Car*>& cars = segment.cars();
   for (size_t i = 0; i < cars.size(); ++i) {
-    ASSERT_GE(cars[i]->exit(), segment.exit());
+    ASSERT_GE(cars[i]->exit(), segment.exit()->id());
   }
 }
 
@@ -110,11 +114,11 @@ TEST(SegmentTest, SetsExit) {
   Segment prev_segment(10, NULL, 50, 100, 5);
   Segment segment(10, &prev_segment, 50, 100, 5);
   prev_segment.set_next(&segment);
-  ASSERT_EQ(prev_segment.exit(), segment.entrance());
+  ASSERT_EQ(prev_segment.exit()->id(), segment.entrance());
 
   Junction junction;
   segment.set_exit(&junction);
-  ASSERT_EQ(segment.exit(), junction.id());
+  ASSERT_EQ(segment.exit()->id(), junction.id());
 }
 
 }  // namespace project
