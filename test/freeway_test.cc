@@ -36,7 +36,7 @@ TEST(FreewayTest, UpdatesNumCarsAfterOperate) {
   const std::vector<Segment*>& segments = freeway.segments();
   size_t cars = 0;
   for (size_t i = 0; i < segments.size(); ++i) {
-    cars +=  segments[i]->num_cars();
+    cars += segments[i]->num_cars();
   }
   ASSERT_EQ(freeway.num_cars(), cars);
 }
