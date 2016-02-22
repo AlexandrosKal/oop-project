@@ -2,7 +2,7 @@
 
 namespace project {
 
-Car::Car(size_t exit, Segment* segment)
+Car::Car(size_t exit, const Segment* segment)
   : exit_(exit), ready_(false), segment_(segment) {
 }
 
@@ -18,7 +18,7 @@ bool Car::ready() const {
   return ready_;
 }
 
-void Car::set_segment(Segment* segment) {
+void Car::set_segment(const Segment* segment) {
   segment_ = segment;
 }
 

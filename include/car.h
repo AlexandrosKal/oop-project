@@ -9,14 +9,14 @@ class Segment;
 
 class Car {
  public:
-  Car(size_t, Segment*);
+  Car(size_t, const Segment*);
 
   size_t exit() const;
 
   void set_ready(bool /*ready*/);
   bool ready() const;
 
-  void set_segment(Segment* /*segment*/);
+  void set_segment(const Segment*);
   const Segment* segment() const;
 
  private:
