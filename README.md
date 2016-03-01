@@ -1,6 +1,6 @@
 # [K10](http://cgi.di.uoa.gr/~izambo/oop.html) - [Project assignment](http://cgi.di.uoa.gr/~izambo/OOPproj_2016.pdf)
 
-[![Build Status](https://travis-ci.com/mariosal/oop-project.svg?token=xqRUQfavuqwatjTFWe8m&branch=master)](https://travis-ci.com/mariosal/oop-project)
+[![Build Status](https://travis-ci.org/mariosal/oop-project.svg?branch=master)](https://travis-ci.org/mariosal/oop-project)
 
 ## Requirements
 
